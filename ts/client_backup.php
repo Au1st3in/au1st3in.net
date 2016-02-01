@@ -2,7 +2,7 @@
 <head>
 <link rel="shortcut icon" href="../teamspeak/teamspeak.ico">
 <title>TSStatus</title>
-<link rel="stylesheet" type="text/css" href="../teamspeak/tsstatus.css" />
+<link rel="stylesheet" type="text/css" href="../teamspeak/tsstatus.min.css" />
 </head>
 <body>
 <p><br><br><br><br></p>
