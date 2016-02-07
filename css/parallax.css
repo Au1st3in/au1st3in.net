@@ -8,7 +8,7 @@ p {
 }
 
 .button-collapse {
-  color: #26a69a;
+  color: #607d8b;
 }
 
 .parallax-container {
@@ -46,4 +46,8 @@ p {
 
 footer.page-footer {
   margin: 0;
+}
+
+.card {
+  width: 500px;
 }
