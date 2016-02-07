@@ -37,7 +37,7 @@
           <h5 class="header col s12 light">Authentic, diverse, open - Arma 3 sends you to war.</h5>
         </div>
       </div>
-      <div class="parallax"><img src="img/arma3.png"></div>
+      <div class="parallax"><img src="img/arma3.png" width="1920" height="1200"></div>
     </div>
     <div class="container">
       <div class="section">
@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="parallax"><img src="img/dayz.png"></div>
+      <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
     </div>
     <footer class="page-footer blue-grey">
       <div class="container">
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="footer-copyright blue-grey darken-1">
-        <div class="container">
+        <div class="container grey-text text-lighten-4">
           &copy; <?php echo date("Y") ?> <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">Austin Rocha</a>
           <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="https://materializecss.com">Materialize</a></p>
         </div>
