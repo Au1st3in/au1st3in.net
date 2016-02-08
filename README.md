@@ -1,6 +1,3 @@
-au1st3in.net
-=============================
-
 ![](https://raw.githubusercontent.com/Au1st3in/au1st3in.net/master/img/screenshot.png)
 
 ## Credits
