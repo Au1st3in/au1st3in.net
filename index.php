@@ -46,7 +46,7 @@
             <div class="icon-block">
               <h2 class="center blue-grey-text"><i class="material-icons">settings_voice</i></h2>
               <h5 class="center">High Quality Voice Communication</h5>
-              <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, as well a 1 gigabit LAN connection.</p>
+              <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, in addition to a gigabit LAN connection.</p>
               <p><br></p>
             </div>
             <div class="row center">
