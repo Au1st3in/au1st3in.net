@@ -53,7 +53,7 @@
               <a href="ts3server://<?php echo $serverDNS; ?>?port=<?php echo $serverPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
             </div>
           </div>
-          <div class="col s12 m6">
+          <div class="col s12 m6 hide-on-med-and-down">
             <div class="card large hoverable">
               <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
                 <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
