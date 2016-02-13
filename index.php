@@ -94,7 +94,7 @@
       <div class="footer-copyright blue-grey darken-1">
         <div class="container grey-text text-lighten-4">
           &copy; <?php echo date("Y") ?> <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">Austin Rocha</a>
-          <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="https://materializecss.com">Materialize</a></p>
+          <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="http://materializecss.com" target="_blank">Materialize</a></p>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
