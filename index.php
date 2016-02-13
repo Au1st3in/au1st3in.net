@@ -84,6 +84,7 @@
           <div class="col l4 offset-l2 s12">
             <h5 class="white-text">GitHub</h5>
             <ul>
+              <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
               <li><a class="github-button" href="https://github.com/au1st3in" data-style="mega" data-count-href="/au1st3in/followers" data-count-api="/users/au1st3in#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @au1st3in on GitHub">Follow @au1st3in</a></li>
               <li><a class="github-button" href="https://github.com/au1st3in/au1st3in.net" data-icon="octicon-star" data-style="mega" data-count-href="/au1st3in/au1st3in.net/stargazers" data-count-api="/repos/au1st3in/au1st3in.net#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star au1st3in/au1st3in.net on GitHub">Star</a></li>
             </ul>
@@ -96,7 +97,6 @@
           <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="https://materializecss.com">Materialize</a></p>
         </div>
       </div>
-      <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
       <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="js/parallax.min.js"></script>
