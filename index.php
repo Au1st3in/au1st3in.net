@@ -12,7 +12,7 @@
     <title>Au1st3in</title>
     <meta name="author" content="Austin Rocha">
     <meta name="description" content="Au1st3in's Teamspeak Server Community">
-    <link rel="shortcut icon" href="steam.ico">
+    <link rel="shortcut icon" href="img/steam.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
