@@ -15,29 +15,24 @@
     <link rel="shortcut icon" href="img/steam.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
     <link href="css/parallax.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
     <nav class="white" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">au1st3in.net</a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-small-only">
           <li><a href="#">Teamspeak Server</a></li>
         </ul>
-        <ul id="nav-mobile" class="side-nav">
+        <!-- <ul id="nav-mobile" class="side-nav">
           <li><a href="#">Teamspeak Server</a></li>
         </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
       </div>
     </nav>
-    <div class="parallax-container valign-wrapper">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Authentic, diverse, open - Arma 3 sends you to war.</h5>
-        </div>
-      </div>
-      <div class="parallax"><img src="img/arma3.png" width="1920" height="1200"></div>
+    <div class="parallax-container valign-wrapper hide-on-small-only">
+      <div class="parallax"><img src="img/arma3.png" width="1920" height="1080"></div>
     </div>
     <div class="container">
       <div class="section">
@@ -64,20 +59,13 @@
         </div>
       </div>
     </div>
-    <div class="parallax-container valign-wrapper">
-      <div class="section no-pad-bot">
-        <div class="container">
-          <div class="row center">
-            <h5 class="header col s12 light">This is DayZ, this is your story.</h5>
-          </div>
-        </div>
-      </div>
+    <div class="parallax-container valign-wrapper hide-on-small-only">
       <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
     </div>
     <footer class="page-footer blue-grey">
       <div class="container">
         <div class="row">
-          <div class="col l6 s12">
+          <div class="col l6 s12 hide-on-small-only">
             <h5 class="white-text">Content Usage Disclaimer</h5>
             <p class="grey-text text-lighten-4">This website is not affiliated or authorized by <a class="grey-text text-lighten-4" href="https://www.bistudio.com/english/community/game-content-usage-rules">Bohemia Interactive</a> a.s. Bohemia Interactive, ARMA, DAYZ and all associated logos and designs are trademarks or registered trademarks of Bohemia Interactive a.s.</p>
           </div>
