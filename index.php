@@ -11,11 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Au1st3in</title>
     <meta name="author" content="Austin Rocha">
-    <meta name="description" content="Au1st3in's Teamspeak Server Community">
     <link rel="shortcut icon" href="img/steam.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,600,700">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="css/parallax.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
@@ -25,10 +24,6 @@
         <ul class="right hide-on-small-only">
           <li><a href="#">Teamspeak Server</a></li>
         </ul>
-        <!-- <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Teamspeak Server</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
       </div>
     </nav>
     <div class="parallax-container valign-wrapper hide-on-small-only">
@@ -85,8 +80,8 @@
           <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="http://materializecss.com" target="_blank">Materialize</a></p>
         </div>
       </div>
-      <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
       <script src="js/parallax.min.js"></script>
     </footer>
   </body>
