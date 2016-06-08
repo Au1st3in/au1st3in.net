@@ -52,7 +52,7 @@
           <?php if($auth->IsUserLoggedIn()){ ?>
             <li class="grey-text text-darken-4">
               <div class="valign-wrapper">
-                &nbsp;&nbsp;&nbsp;<img src="<?php echo $steamprofile['avatar']; ?>" class="circle valign">
+                &nbsp;&nbsp;&nbsp;<img src="<?php echo $steamprofile['avatarmedium']; ?>" class="circle valign" height="40px" width="40px">
               </div>
             </li>
             <li class="grey-text text-darken-4">
