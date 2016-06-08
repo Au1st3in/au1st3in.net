@@ -5,6 +5,32 @@
     $serverPort = "9987";
     $serverDNS = "ts.au1st3in.net";
     $serverDDNS = "www.au1st3in.net";
+
+    include("php/SteamAuth.php");
+    $auth = new SteamAuth();
+
+    // You can use this to do other checks on the person, such as making an account in a database
+    $auth->SetOnLoginCallback(function($steamid){
+    	return true; // returning true will log them in, false will stop the login (you should put an error message in that case)
+    });
+
+    // This handler is for when a login fails Ex: canceled, auth failed, exploit attempt, etc
+    $auth->SetOnLoginFailedCallback(function(){
+    	return false;
+    });
+
+    // You can use this to do other checks on the person, such as making an modifying a database
+    $auth->SetOnLogoutCallback(function($steamid){
+    	return true;
+    });
+
+    // Always call Init() on pages you want to check a login from.  Call this AFTER you set handlers!
+    $auth->Init();
+
+    // Where we handle the POST logout from the form below
+    if(isset($_POST['logout'])){
+    	$auth->Logout(); // The logout function also refreshes the page
+    }
   ?>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -22,8 +48,28 @@
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">au1st3in.net</a>
         <ul class="right hide-on-small-only">
-          <li><a href="#">Teamspeak Server</a></li>
+          <li class="active"><a href="#">TeamSpeak</a></li>
+          <?php if($auth->IsUserLoggedIn()){ ?>
+            <li class="grey-text text-darken-4">
+              <div class="valign-wrapper">
+                &nbsp;&nbsp;&nbsp;<img src="<?php echo $steamprofile['avatar']; ?>" class="circle valign">
+              </div>
+            </li>
+            <li class="grey-text text-darken-4">
+              <form method="POST">
+                &nbsp;<?php echo $steamprofile['personaname']; ?>&nbsp;&nbsp;&nbsp;
+                <input type="submit" name="logout" value="Logout"/>
+              </form>
+            </li>
+          <?php }else{ ?>
+            <li><a href="<?php echo $auth->GetLoginURL(); ?>" class="waves-effect waves-light btn light-green darken-2">Steam Login</a></li>
+          <?php } ?>
         </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li class="active"><a href="#">TeamSpeak</a></li>
+
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
     </nav>
     <div class="parallax-container valign-wrapper hide-on-small-only">
@@ -36,7 +82,7 @@
             <div class="icon-block">
               <h2 class="center blue-grey-text"><i class="material-icons">settings_voice</i></h2>
               <h5 class="center">High Quality Voice Communication</h5>
-              <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, in addition to a gigabit LAN connection.</p>
+              <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, in addition to a nearly gigabit LAN connection.</p>
               <p><br></p>
             </div>
             <div class="row center">
@@ -76,8 +122,7 @@
       </div>
       <div class="footer-copyright blue-grey darken-1">
         <div class="container grey-text text-lighten-4">
-          &copy; <?php echo date("Y") ?> <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">Austin Rocha</a>
-          <p class="grey-text text-lighten-4 right">Built with <a class="grey-text text-lighten-4" href="http://materializecss.com" target="_blank">Materialize</a></p>
+          <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha</a><a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a></p>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
