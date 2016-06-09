@@ -316,7 +316,7 @@ class TSStatus
 
 					$content .= <<<HTML
 <div class="tsstatusItem">
-	<i class="sprite sprite-$icon"></i>$name
+	<i class="sprite sprite-$icon"></i>&nbsp;$name
 	<div class="tsstatusFlags">
 		$flags
 	</div>
@@ -341,9 +341,6 @@ HTML;
 					$name = $this->toHTML($channel["channel_name"]);
 					$title = $name  . " [" . $channel["cid"] . "]";
 					$link = "";
-					/**
-					$link = "javascript:tsstatusconnect('" . $this->_javascriptName . "'," . $channel["cid"] . ")";
-					**/
 
 					$icon = "16x16_channel_green";
 					if( $channel["channel_maxclients"] > -1 && ($channel["total_clients"] >= $channel["channel_maxclients"])) $icon = "16x16_channel_red";
@@ -363,14 +360,12 @@ HTML;
 
 					$content .= <<<HTML
 <div class="tsstatusItem">
-	<a href="$link" title="$title">
-		<i class="sprite sprite-$icon"></i>$name
+		<i class="sprite sprite-$icon"></i>&nbsp;$name
 		<div class="tsstatusFlags">
 			$flags
 		</div>
 		$users
-	</a>
-	$childs
+		$childs
 </div>
 HTML;
 				}
@@ -408,10 +403,9 @@ HTML;
 
 			$content = <<<HTML
 <div class="tsstatus">
-	<input type="hidden" id="tsstatus-$javascriptName-hostport" value="$host:$port" />
 	$options
 	<div class="tsstatusItem tsstatusServer">
-		<i class="sprite sprite-$icon"></i>$name
+		<i class="sprite sprite-$icon"></i>&nbsp;$name
 		$channels
 	</div>
 </div>
