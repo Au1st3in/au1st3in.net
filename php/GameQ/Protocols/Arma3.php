@@ -24,21 +24,21 @@ namespace GameQ\Protocols;
  * @package GameQ\Protocols
  * @author Austin Bischoff <austin@codebeard.com>
  */
-class Armedassault3 extends Source
+class Arma3 extends Source
 {
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'armedassault3';
+    protected $name = 'arma3';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "Armed Assault 3";
+    protected $name_long = "ArmA 3";
 
     /**
      * Query port = client_port + 1

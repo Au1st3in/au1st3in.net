@@ -25,7 +25,7 @@ namespace GameQ\Protocols;
  * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Dayzmod extends Arma2oa
 {
 
     /**

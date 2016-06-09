@@ -24,7 +24,7 @@ namespace GameQ\Protocols;
  * @package GameQ\Protocols
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Armedassault2oa extends Source
+class Arma2oa extends Source
 {
 
     /**
@@ -32,14 +32,14 @@ class Armedassault2oa extends Source
      *
      * @type string
      */
-    protected $name = "armedassault2oa";
+    protected $name = "arma2oa";
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "Armed Assault 2: Operation Arrowhead";
+    protected $name_long = "ArmA 2: Operation Arrowhead";
 
     /**
      * Query port = client_port - 1
