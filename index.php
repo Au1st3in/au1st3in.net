@@ -67,7 +67,6 @@
         </ul>
         <ul id="nav-mobile" class="side-nav">
           <li class="active"><a href="#">TeamSpeak</a></li>
-
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
@@ -122,7 +121,7 @@
       </div>
       <div class="footer-copyright blue-grey darken-1">
         <div class="container grey-text text-lighten-4">
-          <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha</a><a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a></p>
+          <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha, Some Rights Reserved</a><a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a></p>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
