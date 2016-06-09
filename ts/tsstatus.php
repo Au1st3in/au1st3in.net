@@ -219,10 +219,10 @@ class TSStatus
 			}
 
 			$serverGroups = $this->parseLine($lines[4]);
-			foreach ($serverGroups as $sg) if($sg["iconid"] > 0) $this->setServerGroupFlag($sg["sgid"], 'group_' . $sg["iconid"] . '.png');
+			foreach ($serverGroups as $sg) if($sg["iconid"] > 0) $this->setServerGroupFlag($sg["sgid"], 'group_' . $sg["iconid"]);
 
 			$channelGroups = $this->parseLine($lines[5]);
-			foreach ($channelGroups as $cg) if($cg["iconid"] > 0) $this->setChannelGroupFlag($cg["cgid"], 'group_' . $cg["iconid"] . '.png');
+			foreach ($channelGroups as $cg) if($cg["iconid"] > 0) $this->setChannelGroupFlag($cg["cgid"], 'group_' . $cg["iconid"]);
 		}
 		else throw new Exception("Invalid server response");
 	}
@@ -266,7 +266,7 @@ class TSStatus
 	private function renderFlags($flags)
 	{
 		$content = "";
-		foreach ($flags as $flag) $content .= '<img src="' . $this->imagePath . $flag . '" />';
+		foreach ($flags as $flag) $content .= '<i class="sprite sprite-' . $flag . '"></i>';
 		return $content;
 	}
 
@@ -289,13 +289,13 @@ class TSStatus
 				{
 					$name = $this->toHTML($user["client_nickname"]);
 
-					$icon = "16x16_player_off.png";
-					if($user["client_away"] == 1) $icon = "16x16_away.png";
-					else if($user["client_flag_talking"] == 1) $icon = "16x16_player_on.png";
-					else if($user["client_output_hardware"] == 0) $icon = "16x16_hardware_output_muted.png";
-					else if($user["client_output_muted"] == 1) $icon = "16x16_output_muted.png";
-					else if($user["client_input_hardware"] == 0) $icon = "16x16_hardware_input_muted.png";
-					else if($user["client_input_muted"] == 1) $icon = "16x16_input_muted.png";
+					$icon = "16x16_player_off";
+					if($user["client_away"] == 1) $icon = "16x16_away";
+					else if($user["client_flag_talking"] == 1) $icon = "16x16_player_on";
+					else if($user["client_output_hardware"] == 0) $icon = "16x16_hardware_output_muted";
+					else if($user["client_output_muted"] == 1) $icon = "16x16_output_muted";
+					else if($user["client_input_hardware"] == 0) $icon = "16x16_hardware_input_muted";
+					else if($user["client_input_muted"] == 1) $icon = "16x16_input_muted";
 
 					$flags = array();
 
@@ -316,7 +316,7 @@ class TSStatus
 
 					$content .= <<<HTML
 <div class="tsstatusItem">
-	<img src="$imagePath$icon" />$name
+	<i class="sprite sprite-$icon"></i>$name
 	<div class="tsstatusFlags">
 		$flags
 	</div>
@@ -341,19 +341,19 @@ HTML;
 					$name = $this->toHTML($channel["channel_name"]);
 					$title = $name  . " [" . $channel["cid"] . "]";
 					$link = "";
-					/** 
+					/**
 					$link = "javascript:tsstatusconnect('" . $this->_javascriptName . "'," . $channel["cid"] . ")";
 					**/
 
-					$icon = "16x16_channel_green.png";
-					if( $channel["channel_maxclients"] > -1 && ($channel["total_clients"] >= $channel["channel_maxclients"])) $icon = "16x16_channel_red.png";
-					else if( $channel["channel_maxfamilyclients"] > -1 && ($channel["total_clients_family"] >= $channel["channel_maxfamilyclients"])) $icon = "16x16_channel_red.png";
-					else if($channel["channel_flag_password"] == 1) $icon = "16x16_channel_yellow.png";
+					$icon = "16x16_channel_green";
+					if( $channel["channel_maxclients"] > -1 && ($channel["total_clients"] >= $channel["channel_maxclients"])) $icon = "16x16_channel_red";
+					else if( $channel["channel_maxfamilyclients"] > -1 && ($channel["total_clients_family"] >= $channel["channel_maxfamilyclients"])) $icon = "16x16_channel_red";
+					else if($channel["channel_flag_password"] == 1) $icon = "16x16_channel_yellow";
 
 					$flags = array();
-					if($channel["channel_flag_default"] == 1) $flags[] = '16x16_default.png';
-					if($channel["channel_needed_talk_power"] > 0) $flags[] = '16x16_moderated.png';
-					if($channel["channel_flag_password"] == 1) $flags[] = '16x16_register.png';
+					if($channel["channel_flag_default"] == 1) $flags[] = '16x16_default';
+					if($channel["channel_needed_talk_power"] > 0) $flags[] = '16x16_moderated';
+					if($channel["channel_flag_password"] == 1) $flags[] = '16x16_register';
 					$flags = $this->renderFlags($flags);
 
 					$users = $this->renderUsers($channel["cid"]);
@@ -364,7 +364,7 @@ HTML;
 					$content .= <<<HTML
 <div class="tsstatusItem">
 	<a href="$link" title="$title">
-		<img src="$imagePath$icon" />$name
+		<i class="sprite sprite-$icon"></i>$name
 		<div class="tsstatusFlags">
 			$flags
 		</div>
@@ -397,7 +397,7 @@ HTML;
 			$host = $this->_host;
 			$port = $this->_serverDatas["virtualserver_port"];
 			$name = $this->toHTML($this->_serverDatas["virtualserver_name"]);
-			$icon = $this->imagePath . "16x16_server_green.png";
+			$icon = "16x16_server_green";
 			$this->_javascriptName = $javascriptName = preg_replace("#[^a-z-A-Z0-9]#", "-", $host . "-" . $port);
 
 			$options = "";
@@ -411,7 +411,7 @@ HTML;
 	<input type="hidden" id="tsstatus-$javascriptName-hostport" value="$host:$port" />
 	$options
 	<div class="tsstatusItem tsstatusServer">
-		<a href=""><img src="$icon" />$name</a>
+		<i class="sprite sprite-$icon"></i>$name
 		$channels
 	</div>
 </div>
