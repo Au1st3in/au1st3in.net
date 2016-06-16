@@ -11,4 +11,5 @@ ts.au1st3in.net
 ## Credits
 * Materialize - Alvin Wang (https://github.com/Dogfalo/materialize)
 * TSStatus - Sebastien Gerard (http://tsstatus.sebastien.me)
+* Arma Server Status - Patrick (https://github.com/firefly2442/phparma2serverstatus)
 * Steam Authentication - Ben Smith (https://github.com/SmItH197/SteamAuthentication)
