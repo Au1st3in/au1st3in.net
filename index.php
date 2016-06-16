@@ -13,19 +13,6 @@
 
     // Send requests, and parse the data
     $results = $gq->process();
-
-    $serverOnline = false;
-
-    foreach($results as $key => $server){
-      if($server['gq_online'] && !$serverOnline){
-        if($server['game_descr'] == "ExileZ Esseker"){
-          $serverOnline = true;
-          break;
-        } else {
-          $serverOnline = false;
-        }
-      }
-    }
   ?>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -95,37 +82,51 @@
       </div>
     </div>
     <div class="parallax-container valign-wrapper hide-on-small-only">
-      <?php if($serverOnline){ ?>
-        <div class="section no-pad-bot">
-          <div class="container">
-            <div class="section">
-              <div class="row">
-                <div class="col s12 m6 hide-on-med-and-down">
-                  <div><br><br><br></div>
-                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=703084279" target="_blank"><div class="card hoverable center-align">
-                    <div class="card-image">
-                      <img src="img/exilemod-server.png">
-                      <span class="card-title">Steam Workshop Content</span>
+      <?php
+        foreach($results as $key => $server){
+          if($server['gq_online']){
+            if($server['game_descr'] == "ExileZ Esseker"){
+      ?>
+              <div class="section no-pad-bot">
+                <div class="container">
+                  <div class="section">
+                    <div class="row">
+                      <div class="col s12 m6 hide-on-med-and-down">
+                        <div><br><br><br></div>
+                        <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=703084279" target="_blank"><div class="card hoverable center-align">
+                          <div class="card-image">
+                            <img src="img/exilemod-server.png">
+                            <span class="card-title">Steam Workshop Content</span>
+                          </div>
+                        </div></a>
+                      </div>
+                      <div class="col s12 m6">
+                        <div class="icon-block">
+                          <h4 class="header center"><br><?php echo $server['game_descr']; ?></h4>
+                          <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
+                        </div>
+                        <div class="row center">
+                          <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
+                        </div>
+                      </div>
                     </div>
-                  </div></a>
-                </div>
-                <div class="col s12 m6">
-                  <div class="icon-block">
-                    <h4 class="header center"><br><?php echo $server['game_descr']; ?></h4>
-                    <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
-                  </div>
-                  <div class="row center">
-                    <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="parallax"><img src="img/exilemod.png" width="1920" height="1080"></div>
-      <?php }else{ ?>
-        <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
-      <?php } ?>
+              <div class="parallax"><img src="img/exilemod.png" width="1920" height="1080"></div>
+      <?php
+            } else {
+      ?>
+              <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
+      <?php
+            }
+          } else {
+    ?>
+            <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
+    <?php
+        }
+      }
+      ?>
     </div>
     <footer class="page-footer blue-grey">
       <div class="container">
