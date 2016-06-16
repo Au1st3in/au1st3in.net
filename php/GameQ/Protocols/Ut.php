@@ -19,13 +19,11 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Unreal Tournament Protocol Class
  *
- * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
- * @author  Austin Bischoff <austin@codebeard.com>
+ * @author Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Ut extends Gamespy
 {
 
     /**
@@ -33,12 +31,43 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'ut';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Unreal Tournament";
+
+    /**
+     * query_port = client_port + 1
+     *
+     * @type int
+     */
+    protected $port_diff = 1;
+
+    /**
+     * Normalize settings for this protocol
+     *
+     * @type array
+     */
+    protected $normalize = [
+        // General
+        'general' => [
+            // target       => source
+            'dedicated'  => 'dedicated',
+            'gametype'   => 'gametype',
+            'hostname'   => 'hostname',
+            'mapname'    => 'mapname',
+            'maxplayers' => 'maxplayers',
+            'numplayers' => 'numplayers',
+            'password'   => 'password',
+        ],
+        // Individual
+        'player'  => [
+            'name'  => 'name',
+            'score' => 'frags',
+        ],
+    ];
 }

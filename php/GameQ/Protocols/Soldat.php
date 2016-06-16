@@ -19,13 +19,14 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Soldat
  *
  * @package GameQ\Protocols
+ *
  * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Soldat extends Ase
 {
 
     /**
@@ -33,12 +34,26 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'soldat';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Soldat";
+
+    /**
+     * query_port = client_port + 123
+     *
+     * @type int
+     */
+    protected $port_diff = 123;
+
+    /**
+     * The client join link
+     *
+     * @type string
+     */
+    protected $join_link = "soldat://%s:%d/";
 }

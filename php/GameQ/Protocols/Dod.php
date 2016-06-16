@@ -19,12 +19,14 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Armedassault2oa
+ * Class Dod
+ *
+ * Based off of CS 1.6
  *
  * @package GameQ\Protocols
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Arma2oa extends Source
+class Dod extends Cs16
 {
 
     /**
@@ -32,19 +34,12 @@ class Arma2oa extends Source
      *
      * @type string
      */
-    protected $name = "arma2oa";
+    protected $name = 'dod';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "ArmA 2: Operation Arrowhead";
-
-    /**
-     * Query port = client_port - 1
-     *
-     * @type int
-     */
-    protected $port_diff = -1;
+    protected $name_long = "Day of Defeat";
 }

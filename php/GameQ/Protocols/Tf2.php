@@ -19,26 +19,24 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Tf2
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
- * @author  Austin Bischoff <austin@codebeard.com>
+ * @author Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Tf2 extends Source
 {
-
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'tf2';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Team Fortress 2";
 }

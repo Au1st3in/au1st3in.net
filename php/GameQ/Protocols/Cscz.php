@@ -19,13 +19,14 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Cscz
+ *
+ * Based off of CS 1.6
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Cscz extends Cs16
 {
 
     /**
@@ -33,12 +34,12 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'cscz';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Counter-Strike: Condition Zero";
 }

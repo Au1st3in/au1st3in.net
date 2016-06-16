@@ -19,31 +19,25 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Armed Assault 3
+ * Battlefield Hardline Protocol class
  *
  * @package GameQ\Protocols
- * @author Austin Bischoff <austin@codebeard.com>
+ * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Arma3 extends Source
+class Bfh extends Bf4
 {
+
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'arma3';
+    protected $name = 'bfh';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "ArmA 3";
-
-    /**
-     * Query port = client_port + 1
-     *
-     * @type int
-     */
-    protected $port_diff = 1;
+    protected $name_long = "Battlefield Hardline";
 }

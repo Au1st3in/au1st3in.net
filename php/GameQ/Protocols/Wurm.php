@@ -19,26 +19,24 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Wurm Unlimited Protocol Class
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Wurm extends Source
 {
-
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'wurm';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Wurm Unlimited";
 }

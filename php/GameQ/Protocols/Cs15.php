@@ -19,13 +19,14 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Counter-Strike 1.5 Protocol Class
+ *
+ * @author  Nikolay Ipanyuk <rostov114@gmail.com>
+ * @author  Austin Bischoff <austin@codebeard.com>
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
- * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Cs15 extends Won
 {
 
     /**
@@ -33,12 +34,12 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'cs15';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Counter-Strike 1.5";
 }

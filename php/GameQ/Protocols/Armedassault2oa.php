@@ -19,13 +19,12 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Armedassault2oa
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Armedassault2oa extends Source
 {
 
     /**
@@ -33,12 +32,19 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = "armedassault2oa";
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Armed Assault 2: Operation Arrowhead";
+
+    /**
+     * Query port = client_port - 1
+     *
+     * @type int
+     */
+    protected $port_diff = -1;
 }

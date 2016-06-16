@@ -19,13 +19,12 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Codmw3
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Codmw3 extends Source
 {
 
     /**
@@ -33,12 +32,19 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'codmw3';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Call of Duty: Modern Warfare 3";
+
+    /**
+     * query_port = client_port + 2
+     *
+     * @type int
+     */
+    protected $port_diff = 2;
 }

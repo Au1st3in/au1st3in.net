@@ -2,29 +2,29 @@
 <html lang="en">
   <?php
     include("php/SteamAuth.php");
-    $auth = new SteamAuth();
+    require_once("php/GameQ/Autoloader.php");
 
-    // You can use this to do other checks on the person, such as making an account in a database
-    $auth->SetOnLoginCallback(function($steamid){
-    	return true; // returning true will log them in, false will stop the login (you should put an error message in that case)
-    });
+    // Call the class, and add your servers.
+    $gq = \GameQ\GameQ::factory();
+    $gq->addServers($servers);
 
-    // This handler is for when a login fails Ex: canceled, auth failed, exploit attempt, etc
-    $auth->SetOnLoginFailedCallback(function(){
-    	return false;
-    });
+    // You can optionally specify some settings
+    $gq->setOption('timeout', 3);
 
-    // You can use this to do other checks on the person, such as making an modifying a database
-    $auth->SetOnLogoutCallback(function($steamid){
-    	return true;
-    });
+    // Send requests, and parse the data
+    $results = $gq->process();
 
-    // Always call Init() on pages you want to check a login from.  Call this AFTER you set handlers!
-    $auth->Init();
+    $serverOnline = false;
 
-    // Where we handle the POST logout from the form below
-    if(isset($_POST['logout'])){
-    	$auth->Logout(); // The logout function also refreshes the page
+    foreach($results as $key => $server){
+      if($server['gq_online'] && !$serverOnline){
+        if($server['game_descr'] == "ExileZ Esseker"){
+          $serverOnline = true;
+          break;
+        } else {
+          $serverOnline = false;
+        }
+      }
     }
   ?>
   <head>
@@ -43,8 +43,7 @@
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">au1st3in.net</a>
         <ul class="right hide-on-small-only">
-          <li class="active"><a href="#">TeamSpeak</a></li>
-          <li><a href="./exile">Exile</a></li>
+          <li class="active"><a href="#">Home</a></li>
           <?php if($auth->IsUserLoggedIn()){ ?>
             <?php if(in_array($steamprofile['steamid'],$whitelist)){ ?>
               <li><a href="http://dayzcc.au1st3in.net/">DayZCC</a></li>
@@ -63,10 +62,6 @@
           <?php }else{ ?>
             <li><a href="<?php echo $auth->GetLoginURL(); ?>" class="waves-effect waves-light btn light-green darken-2">Steam Login</a></li>
           <?php } ?>
-        </ul>
-        <ul id="nav-mobile" class="side-nav">
-          <li class="active"><a href="#">TeamSpeak</a></li>
-          <li><a href="./exile">Exile</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
@@ -100,7 +95,37 @@
       </div>
     </div>
     <div class="parallax-container valign-wrapper hide-on-small-only">
-      <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
+      <?php if($serverOnline){ ?>
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="section">
+              <div class="row">
+                <div class="col s12 m6 hide-on-med-and-down">
+                  <div><br><br><br></div>
+                  <a href="http://store.steampowered.com/" target="_blank"><div class="card hoverable center-align">
+                    <div class="card-image">
+                      <img src="img/exilemod-server.png">
+                      <span class="card-title">Steam Workshop Content</span>
+                    </div>
+                  </div></a>
+                </div>
+                <div class="col s12 m6">
+                  <div class="icon-block">
+                    <h4 class="header center"><br><?php echo $server['game_descr']; ?></h4>
+                    <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
+                  </div>
+                  <div class="row center">
+                    <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="img/exilemod.png" width="1920" height="1080"></div>
+      <?php }else{ ?>
+        <div class="parallax"><img src="img/dayz.png" width="1920" height="1080"></div>
+      <?php } ?>
     </div>
     <footer class="page-footer blue-grey">
       <div class="container">
@@ -121,7 +146,7 @@
       </div>
       <div class="footer-copyright blue-grey darken-1">
         <div class="container grey-text text-lighten-4">
-          <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha, </a><a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Some Rights Reserved</a><a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a></p>
+          <p class="grey-text text-lighten-4"><a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha, </a><a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Some Rights Reserved</a><a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a></p>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

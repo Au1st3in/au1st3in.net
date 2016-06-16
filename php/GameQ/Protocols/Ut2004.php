@@ -19,13 +19,11 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Unreal Tournament 2004 Protocol Class
  *
- * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
- * @author  Austin Bischoff <austin@codebeard.com>
+ * @author Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Ut2004 extends Unreal2
 {
 
     /**
@@ -33,12 +31,12 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'ut2004';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Unreal Tournament 2004";
 }

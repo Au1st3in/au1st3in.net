@@ -121,4 +121,29 @@ $steamprofile['primaryclanid'] = $_SESSION['steam_primaryclanid'];
 $steamprofile['timecreated'] = $_SESSION['steam_timecreated'];
 $steamprofile['uptodate'] = $_SESSION['steam_uptodate'];
 
+$auth = new SteamAuth();
+
+// You can use this to do other checks on the person, such as making an account in a database
+$auth->SetOnLoginCallback(function($steamid){
+	return true; // returning true will log them in, false will stop the login (you should put an error message in that case)
+});
+
+// This handler is for when a login fails Ex: canceled, auth failed, exploit attempt, etc
+$auth->SetOnLoginFailedCallback(function(){
+	return false;
+});
+
+// You can use this to do other checks on the person, such as making an modifying a database
+$auth->SetOnLogoutCallback(function($steamid){
+	return true;
+});
+
+// Always call Init() on pages you want to check a login from.  Call this AFTER you set handlers!
+$auth->Init();
+
+// Where we handle the POST logout from the form below
+if(isset($_POST['logout'])){
+	$auth->Logout(); // The logout function also refreshes the page
+}
+
 ?>

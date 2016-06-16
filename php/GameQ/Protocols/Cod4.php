@@ -19,26 +19,24 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Call of Duty 4 Protocol Class
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Cod4 extends Quake3
 {
-
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'cod4';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Call of Duty 4";
 }

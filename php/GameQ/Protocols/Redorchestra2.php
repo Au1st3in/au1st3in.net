@@ -19,26 +19,32 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Redorchestra2
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
- * @author  Austin Bischoff <austin@codebeard.com>
+ * @author Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Redorchestra2 extends Source
 {
-
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'redorchestra2';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Red Orchestra 2";
+
+    /**
+     * query_port = client_port + 19238
+     * 27015 = 7777 + 19238
+     *
+     * @type int
+     */
+    protected $port_diff = 19238;
 }

@@ -19,13 +19,12 @@
 namespace GameQ\Protocols;
 
 /**
- * Class Dayzmod
+ * Class Killing floor
  *
  * @package GameQ\Protocols
- * @author  Marcel Bößendörfer <m.boessendoerfer@marbis.net>
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Dayzmod extends Armedassault2oa
+class Killingfloor2 extends Source
 {
 
     /**
@@ -33,12 +32,20 @@ class Dayzmod extends Armedassault2oa
      *
      * @type string
      */
-    protected $name = 'dayzmod';
+    protected $name = 'killing floor 2';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "DayZ Mod";
+    protected $name_long = "Killing Floor 2";
+
+    /**
+     * query_port = client_port + 19238
+     * 27015 = 7777 + 19238
+     *
+     * @type int
+     */
+    protected $port_diff = 19238;
 }
