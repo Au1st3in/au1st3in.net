@@ -102,7 +102,7 @@
               <div class="row">
                 <div class="col s12 m6 hide-on-med-and-down">
                   <div><br><br><br></div>
-                  <a href="http://store.steampowered.com/" target="_blank"><div class="card hoverable center-align">
+                  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=703084279" target="_blank"><div class="card hoverable center-align">
                     <div class="card-image">
                       <img src="img/exilemod-server.png">
                       <span class="card-title">Steam Workshop Content</span>
