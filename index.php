@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
-    $serverIP = $_SERVER["REMOTE_ADDR"];
-    $serverPort = "9987";
-    $serverDNS = "ts.au1st3in.net";
-    $serverDDNS = "www.au1st3in.net";
-
     include("php/SteamAuth.php");
     $auth = new SteamAuth();
 
@@ -49,7 +44,11 @@
         <a id="logo-container" href="#" class="brand-logo">au1st3in.net</a>
         <ul class="right hide-on-small-only">
           <li class="active"><a href="#">TeamSpeak</a></li>
+          <li><a href="./exile">Exile</a></li>
           <?php if($auth->IsUserLoggedIn()){ ?>
+            <?php if(in_array($steamprofile['steamid'],$whitelist)){ ?>
+              <li><a href="http://dayzcc.au1st3in.net/">DayZCC</a></li>
+            <?php } ?>
             <li class="grey-text text-darken-4">
               <div class="valign-wrapper">
                 &nbsp;&nbsp;&nbsp;<img src="<?php echo $steamprofile['avatarmedium']; ?>" class="circle valign" height="40px" width="40px">
@@ -67,6 +66,7 @@
         </ul>
         <ul id="nav-mobile" class="side-nav">
           <li class="active"><a href="#">TeamSpeak</a></li>
+          <li><a href="./exile">Exile</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
@@ -85,13 +85,13 @@
               <p><br></p>
             </div>
             <div class="row center">
-              <a href="ts3server://<?php echo $serverDNS; ?>?port=<?php echo $serverPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
+              <a href="ts3server://<?php echo $teamspeakDNS; ?>?port=<?php echo $teamspeakPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
             </div>
           </div>
           <div class="col s12 m6 hide-on-med-and-down">
             <div class="card large hoverable">
               <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
-                <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
                 <div id="iframeBlocker" style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
               </div>
             </div>

@@ -1,7 +1,5 @@
 <?php
-require('gmod/config.php');
-//require("SteamWebAPI.php");
-//$SteamAPIKey = '';
+require('config.php');
 
 if(session_id() == ''){
 	ob_start();
