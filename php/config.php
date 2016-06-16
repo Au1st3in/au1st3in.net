@@ -7,6 +7,11 @@
 	$teamspeakDNS = "ts.au1st3in.net";
 	$teamspeakPort = "9987";
 	$arma3Port = "2302";
+
+	if(strpos($serverIP, '192.168') !== false){
+		$serverIP = "192.168.1.3";
+	}
+	
 	$arma3 = $serverIP . ":" . $arma3Port;
 
 	$servers = array(
