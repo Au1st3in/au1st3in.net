@@ -19,7 +19,7 @@
   <body>
     <nav class="white" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">au1st3in.net</a>
+        <a href="#" class="brand-logo">au1st3in.net</a>
         <ul class="right hide-on-small-only">
           <li class="active"><a href="#">Home</a></li>
           <?php if($auth->IsUserLoggedIn()){ ?>
@@ -76,20 +76,20 @@
               <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, in addition to a nearly gigabit LAN connection.</p>
             </div>
             <div class="row center">
-              <a href="ts3server://<?php echo $teamspeakDNS; ?>?port=<?php echo $teamspeakPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
+              <a href="ts3server://<?php echo $teamspeakDNS; ?>?port=<?php echo $teamspeakPort; ?>" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
             </div>
             <div class="card large hide-on-med-and-up" style="left:-22px;">
-              <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
-                <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
-                <div id="iframeBlocker" style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
+              <div class="featurette-image img-responsive" style="position: relative;">
+                <iframe style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <div style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
               </div>
             </div>
           </div>
           <div class="col s12 m6">
             <div class="card large hoverable hide-on-med-and-down">
-              <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
-                <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
-                <div id="iframeBlocker" style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
+              <div class="featurette-image img-responsive" style="position: relative;">
+                <iframe style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <div style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
                           <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
                         </div>
                         <div class="row center hide-on-med-and-down">
-                          <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
+                          <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
                         </div>
                       </div>
                     </div>
