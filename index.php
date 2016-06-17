@@ -54,6 +54,21 @@
       </div>
     </nav>
     <div class="parallax-container valign-wrapper hide-on-small-only">
+      <?php if($auth->IsUserLoggedIn()){ ?>
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 l3"><p></p></div>
+              <div class="input-field col s6 m6 center-align">
+                   <input type="text" disabled>
+                   <label class="white-text center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>BattlEye GUID:<i>&nbsp;&nbsp;<?php echo $guid; ?></i></b></label>
+              </div>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+              <button class="left-align btn btn-floating btn-large waves-effect waves-light blue-grey lighten-1" data-clipboard-text="<?php echo $guid; ?>"><i class="material-icons">assignment</i></button>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
       <div class="parallax"><img src="img/arma3.png" width="1920" height="1080"></div>
     </div>
     <div class="container">
@@ -69,9 +84,15 @@
             <div class="row center">
               <a href="ts3server://<?php echo $teamspeakDNS; ?>?port=<?php echo $teamspeakPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
             </div>
+            <div class="card large hide-on-med-and-up" style="left:-22px;">
+              <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
+                <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <div id="iframeBlocker" style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
+              </div>
+            </div>
           </div>
-          <div class="col s12 m6 hide-on-med-and-down">
-            <div class="card large hoverable">
+          <div class="col s12 m6">
+            <div class="card large hoverable hide-on-med-and-down">
               <div id="IframeWrapper" class="featurette-image img-responsive" style="position: relative;">
                 <iframe id="iframewebpage" style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
                 <div id="iframeBlocker" style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
@@ -105,7 +126,7 @@
                           <h4 class="header center"><br><?php echo $server['game_descr']; ?></h4>
                           <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
                         </div>
-                        <div class="row center">
+                        <div class="row center hide-on-med-and-down">
                           <a href="steam://connect/<?php echo $serverIP; ?>:<?php echo $arma3Port; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter <?php echo $server['gq_mapname']; ?></a>
                         </div>
                       </div>
