@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
+    require("php/config.php");
     include("php/SteamAuth.php");
-    require_once("php/GameQ/Autoloader.php");
+    include("php/GameQuery.php");
 
     // Call the class, and add your servers.
     $gq = \GameQ\GameQ::factory();

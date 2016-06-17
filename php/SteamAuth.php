@@ -1,6 +1,4 @@
 <?php
-	require('config.php');
-
 	if(session_id() == ''){
 		ob_start();
 		session_start();

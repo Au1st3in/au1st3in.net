@@ -10,14 +10,6 @@
 	$teamspeakPort = "9987";
 	$arma3Port = "2302";
 
-	$servers = array(
-		array(
-			'id' => 'ExileZ Esseker',
-			'type' => 'armedassault3',
-			'host' => $externalIP . ":" . $arma3Port,
-		)
-	);
-
 	$whitelist = array(
 		'76561198026915793',
 		'76561198079487646'
