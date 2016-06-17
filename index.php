@@ -67,11 +67,11 @@
       <div class="section">
         <div class="row">
           <div class="col s12 m6">
+            <p><br></p>
             <div class="icon-block">
               <h2 class="center blue-grey-text"><i class="material-icons">settings_voice</i></h2>
               <h5 class="center">High Quality Voice Communication</h5>
               <p class="light">Our teamspeak is home of a small gaming community surrounded around games such as Arma 3, DayZ, Counter-Strike, Garry's Mod, H1Z1, and Rocket League. The server utilizes a mix of Speex Ultra Wideband and Opus Voice codec for the best audio quality, in addition to a nearly gigabit LAN connection.</p>
-              <p><br></p>
             </div>
             <div class="row center">
               <a href="ts3server://<?php echo $teamspeakDNS; ?>?port=<?php echo $teamspeakPort; ?>" id="download-button" class="btn-large waves-effect waves-light blue-grey lighten-1">Enter Lobby</a>
