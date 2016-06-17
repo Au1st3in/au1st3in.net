@@ -54,7 +54,9 @@
                    <input type="text" disabled>
                    <label class="white-text center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>BattlEye GUID:<i>&nbsp;&nbsp;<?php echo $guid; ?></i></b></label>
               </div>
-              <button id="btn" class="left-align btn btn-floating btn-large waves-effect waves-light blue-grey lighten-1" data-clipboard-text="<?php echo $guid; ?>"><i class="material-icons">assignment</i></button>
+            </div>
+            <div class="row center">
+              <a id="btn" class="btn waves-effect waves-light blue-grey lighten-1" data-clipboard-text="<?php echo $guid; ?>"><i class="material-icons left">assignment</i>Copy to Clipboard</a>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
               <script>var btn=document.getElementById("btn"),clipboard=new Clipboard(btn);clipboard.on("success",function(o){console.log(o)}),clipboard.on("error",function(o){console.log(o)});</script>
             </div>
