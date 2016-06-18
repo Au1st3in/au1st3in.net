@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <title>Au1st3in</title>
+    <title>Au1st3in.net</title>
     <meta name="author" content="Austin Rocha">
     <link rel="shortcut icon" href="img/steam.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,10 +21,11 @@
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">au1st3in.net</a>
         <ul class="right hide-on-small-only">
-          <li class="active"><a href="#">Home</a></li>
           <?php if($auth->IsUserLoggedIn()){ ?>
             <?php if(in_array($steamprofile['steamid'],$whitelist)){ ?>
-              <li><a href="http://dayzcc.au1st3in.net/">DayZCC</a></li>
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="<?php echo $controlPath; ?>/<?php echo $controlPHP; ?>.php">Control Panel</a></li>
+              <li><a href="<?php echo $dayzccPath; ?>">DayZCC</a></li>
             <?php } ?>
             <li class="grey-text text-darken-4">
               <div class="valign-wrapper">
@@ -80,7 +81,7 @@
             </div>
             <div class="card large hide-on-med-and-up" style="left:-22px;">
               <div class="featurette-image img-responsive" style="position: relative;">
-                <iframe style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <iframe style="z-index:1"  runat="server" src="https://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
                 <div style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
               </div>
             </div>
@@ -88,7 +89,7 @@
           <div class="col s12 m6">
             <div class="card large hoverable hide-on-med-and-down">
               <div class="featurette-image img-responsive" style="position: relative;">
-                <iframe style="z-index:1"  runat="server" src="http://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
+                <iframe style="z-index:1"  runat="server" src="https://<?php echo $serverDNS; ?>/ts/client.php" width="500" height="500" marginheight="0" frameborder="0"></iframe>
                 <div style="position:absolute; top: 0; left: 0; width:95%; height:95%;background-color:aliceblue;opacity:0.1;"></div>
               </div>
             </div>
@@ -139,8 +140,8 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12 hide-on-small-only">
-            <h5 class="white-text">Content Usage Disclaimer</h5>
-            <p class="grey-text text-lighten-4">This website is not affiliated or authorized by <a class="grey-text text-lighten-4" href="https://www.bistudio.com/english/community/game-content-usage-rules">Bohemia Interactive</a> a.s. Bohemia Interactive, ARMA, DAYZ and all associated logos and designs are trademarks or registered trademarks of Bohemia Interactive a.s.</p>
+            <h5 class="white-text"><a class="white-text" href="https://www.bistudio.com/english/community/game-content-usage-rules">Content Usage Disclaimer</a></h5>
+            <p class="grey-text text-lighten-4">This website is not affiliated or authorized by Bohemia Interactive a.s. Bohemia Interactive, ARMA, DAYZ, and all associated logos and designs are trademarks or registered trademarks of Bohemia Interactive a.s.</p>
           </div>
           <div class="col l4 offset-l2 s12">
             <h5 class="white-text">GitHub</h5>
