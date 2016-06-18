@@ -27,3 +27,7 @@
     Header set Cache-Control "max-age=1, private, must-revalidate"
   </filesMatch>
 </ifModule>
+RewriteEngine On 
+RewriteCond %{HTTP_HOST} ^au1st3in\.net [NC]
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.au1st3in.net/$1 [R,L]
