@@ -11,7 +11,7 @@
         <head>
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-          <title>Au1st3in.net</title>
+          <title>Au1st3in</title>
           <meta name="author" content="Austin Rocha">
           <link rel="shortcut icon" href="<?php echo $mainPath; ?>/img/steam.ico">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -46,7 +46,6 @@
               <div class="container">
                 <p><br></p>
                 <h3 class="header center white-text"><?php echo $compName; ?></h3>
-                <h5 class="header center white-text">Server</h5>
                 <div class="row center">
                   <p></p>
                   <?php
@@ -57,8 +56,10 @@
                     curl_close($ch);
                     if($retcode == 200){
                   ?>
+                    <h5 class="header center white-text">Server Online</h5>
                     <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $rebootCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1">Reboot Server</a>
                   <?php } else { ?>
+                    <h5 class="header center white-text">Server Offline</h5>
                     <a class="btn waves-effect waves-light blue-grey lighten-1 disabled">Reboot Server</a>
                   <?php } ?>
                 </div>
