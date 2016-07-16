@@ -316,7 +316,7 @@ class TSStatus
 
 					$content .= <<<HTML
 <div class="tsstatusItem">
-	<i class="sprite sprite-$icon"></i>&nbsp;$name
+	&nbsp;<i class="sprite sprite-$icon"></i>&nbsp;$name
 	<div class="tsstatusFlags">
 		$flags
 	</div>
@@ -360,7 +360,7 @@ HTML;
 
 					$content .= <<<HTML
 <div class="tsstatusItem">
-		<i class="sprite sprite-$icon"></i>&nbsp;$name
+		&nbsp;<i class="sprite sprite-$icon"></i>&nbsp;$name
 		<div class="tsstatusFlags">
 			$flags
 		</div>
@@ -405,7 +405,7 @@ HTML;
 <div class="tsstatus">
 	$options
 	<div class="tsstatusItem tsstatusServer">
-		<i class="sprite sprite-$icon"></i>&nbsp;$name
+		&nbsp;<i class="sprite sprite-$icon"></i>&nbsp;$name
 		$channels
 	</div>
 </div>
