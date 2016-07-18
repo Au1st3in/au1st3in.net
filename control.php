@@ -57,15 +57,91 @@
                     if($retcode == 200){
                   ?>
                     <h5 class="header center white-text">Server Online</h5>
+                    <p></p>
                     <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $rebootCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1">Reboot Server</a>
                   <?php } else { ?>
                     <h5 class="header center white-text">Server Offline</h5>
+                    <p></p>
                     <a class="btn waves-effect waves-light blue-grey lighten-1 disabled">Reboot Server</a>
                   <?php } ?>
                 </div>
               </div>
             </div>
             <div class="parallax"><img src="img/dayz.png"></div>
+          </div>
+          <div class="parallax-container valign-wrapper hide-on-small-only">
+        <?php foreach($results as $key => $server){
+                if(!(isset($server['gq_mod']) && $server['gq_mod'] == "arma2arrowpc") && !(isset($server['gq_mod']) && $server['gq_mod'] == "dayz")){ ?>
+                  <div class="section no-pad-bot">
+                    <div class="container">
+                      <?php if($server['gq_online']){ ?>
+                        <script>
+                          window.onload = function() {
+                            Materialize.toast('Arma 2: OA Server is Online.', 5000);
+                          };
+                        </script>
+                      <?php } ?>
+                      <div class="section">
+                        <div class="row">
+                          <div class="col s12 m6 hide-on-med-and-down">
+                            <div><br><br><br></div>
+                            <div class="card hoverable center-align">
+                              <div class="card-image">
+                                <?php if($server['gq_online']){ ?>
+                                  <?php if(strpos($server['game_descr'], 'Exile') !== false){ ?>
+                                    <img src="<?php echo $mainPath; ?>/img/dayzmod-server.png">
+                                    <span class="card-title"><?php echo str_replace('Au1st3in.net - ', '', $server['gq_hostname']); ?></span>
+                                  <?php } else { ?>
+                                    <img src="<?php echo $mainPath; ?>/img/arma2oa-server.png">
+                                    <span class="card-title"><?php echo str_replace('Au1st3in.net - ', '', $server['gq_hostname']); ?></span>
+                                  <?php } ?>
+                                <?php } else { ?>
+                                  <img src="<?php echo $mainPath; ?>/img/exilemod-server.png">
+                                <?php } ?>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col s12 m6">
+                            <div class="center">
+                              <?php if($server['gq_online']){ ?>
+                                <h4 class="header center"><br><?php echo $server['game_descr']; ?></h4>
+                                <h5 class="header center light"><?php echo "Players: " . $server['gq_numplayers'] . "/" . $server['gq_maxplayers']; ?></h5><p></p>
+                              <?php } else { ?>
+                                <h4 class="header center"><br>Arma 2: OA Server</h4>
+                                <h5 class="header center light"><i>Currently Offline</i></h5><p></p>
+                              <?php } ?>
+                                <p></p>
+                            </div>
+                            <div class="row center center-align">
+                              <?php if($server['gq_online'] && $retcode == 200){ ?>
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $restartCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Restart"><i class="material-icons">loop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $stopCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Stop"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $killCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Kill Process"><i class="material-icons">not_interested</i></a>
+                              <?php } elseif($retcode == 200) { ?>
+                                <a href="<?php echo $actionPath; ?>/<?php echo $actionPHP; ?>.php&<?php echo $actionQuery; ?>=<?php echo $startCase; ?>" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Start"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">loop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                              <?php } else { ?>
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">loop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                              <?php } ?>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <?php if(strpos($server['game_descr'], 'Exile') !== false){ ?>
+                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/dayzmod.png" width="1920" height="1080"></div>
+                  <?php } else { ?>
+                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/exilemod.png" width="1920" height="1080"></div>
+                  <?php } ?>
+          <?php }
+              } ?>
           </div>
           <div class="parallax-container valign-wrapper hide-on-small-only">
         <?php foreach($results as $key => $server){
@@ -136,7 +212,7 @@
                   <?php if(strpos($server['game_descr'], 'Exile') !== false){ ?>
                     <div class="parallax"><img src="<?php echo $mainPath; ?>/img/exilemod.png" width="1920" height="1080"></div>
                   <?php } else { ?>
-                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/arma3.png" width="1920" height="1080"></div>
+                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/arma3tanoa.png" width="1920" height="1080"></div>
                   <?php } ?>
           <?php }
               } ?>
