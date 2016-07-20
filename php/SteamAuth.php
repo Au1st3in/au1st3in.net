@@ -18,7 +18,7 @@
 		public function __construct($Server = 'DEFAULT'){
 			if($Server = 'DEFAULT') $Server = $_SERVER['SERVER_NAME'];
 			$this->OpenID = new LightOpenID($Server);
-			$this->OpenID->identity = 'http://steamcommunity.com/openid';
+			$this->OpenID->identity = 'https://steamcommunity.com/openid';
 
 			$this->OnLoginCallback = function(){};
 			$this->OnLoginFailedCallback = function(){};
@@ -65,7 +65,7 @@
 			$this->OnLogoutCallback($this->SteamID);
 
 			unset($_SESSION['steamid']);
-			header("http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+			header("https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 		}
 
 		public function SetOnLoginCallback($OnLoginCallback){
@@ -82,7 +82,7 @@
 	}
 
 	if (empty($_SESSION['steam_uptodate']) or empty($_SESSION['steam_personaname'])) {
-		$url = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$SteamAPIKey."&steamids=".$_SESSION['steamid']);
+		$url = file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$SteamAPIKey."&steamids=".$_SESSION['steamid']);
 		$content = json_decode($url, true);
 		$_SESSION['steam_steamid'] = $content['response']['players'][0]['steamid'];
 		$_SESSION['steam_communityvisibilitystate'] = $content['response']['players'][0]['communityvisibilitystate'];
@@ -155,7 +155,7 @@
 	if($auth->IsUserLoggedIn()){
 		if(!isset($_SESSION['initialLogin'])){
 			$_SESSION['initialLogin'] = true;
-			header('Location: http://' . $serverDNS);
+			header('Location: https://' . $serverDNS);
 		}
 	}
 ?>
