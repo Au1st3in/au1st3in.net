@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
-    require("php/config.php");
+    require("config.php");
     require("php/SteamAuth.php");
     if($auth->IsUserLoggedIn()){
     	if(in_array($steamprofile['steamid'],$whitelist)){
