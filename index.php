@@ -25,7 +25,6 @@
             <?php if(in_array($steamprofile['steamid'],$whitelist)){ ?>
               <li class="active"><a href="#">Home</a></li>
               <li><a href="<?php echo $controlPath; ?>/<?php echo $controlPHP; ?>.php">Control Panel</a></li>
-              <li><a href="<?php echo $dayzccPath; ?>">DayZCC</a></li>
             <?php } ?>
             <li class="grey-text text-darken-4">
               <div class="valign-wrapper">
@@ -34,7 +33,7 @@
             </li>
             <li class="grey-text text-darken-4">
               <form method="POST">
-                &nbsp;<?php echo $steamprofile['personaname']; ?>&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;<?php echo $steamprofile['personaname']; ?>&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="submit" name="logout" value="Logout"/>
               </form>
             </li>

@@ -26,7 +26,6 @@
               <ul class="right hide-on-small-only">
                 <li><a href="<?php echo $mainPath; ?>/">Home</a></li>
                 <li class="active"><a href="#">Control Panel</a></li>
-                <li><a href="<?php echo $dayzccPath; ?>">DayZCC</a></li>
                   <li class="grey-text text-darken-4">
                     <div class="valign-wrapper">
                       &nbsp;&nbsp;&nbsp;<img src="<?php echo $steamprofile['avatarmedium']; ?>" class="circle valign" height="40px" width="40px">
@@ -34,7 +33,7 @@
                   </li>
                   <li class="grey-text text-darken-4">
                     <form method="POST">
-                      &nbsp;<?php echo $steamprofile['personaname']; ?>&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;<?php echo $steamprofile['personaname']; ?>&nbsp;&nbsp;&nbsp;&nbsp;
                       <input type="submit" name="logout" value="Logout"/>
                     </form>
                   </li>
@@ -88,7 +87,7 @@
                             <div class="card hoverable center-align">
                               <div class="card-image">
                                 <?php if($server['gq_online']){ ?>
-                                  <?php if(strpos($server['game_descr'], 'Exile') !== false){ ?>
+                                  <?php if(strpos($server['game_descr'], 'DayZ') !== false){ ?>
                                     <img src="<?php echo $mainPath; ?>/img/dayzmod-server.png">
                                     <span class="card-title"><?php echo str_replace('Au1st3in.net - ', '', $server['gq_hostname']); ?></span>
                                   <?php } else { ?>
@@ -96,7 +95,7 @@
                                     <span class="card-title"><?php echo str_replace('Au1st3in.net - ', '', $server['gq_hostname']); ?></span>
                                   <?php } ?>
                                 <?php } else { ?>
-                                  <img src="<?php echo $mainPath; ?>/img/exilemod-server.png">
+                                  <img src="<?php echo $mainPath; ?>/img/arma2oa-server.png">
                                 <?php } ?>
                               </div>
                             </div>
@@ -130,6 +129,11 @@
                                 <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
                               <?php } ?>
                             </div>
+                            <div class="row center">
+                              <?php if($server['gq_online'] && (strpos($server['game_descr'], 'DayZ') !== false)){ ?>
+                                <a href="<?php echo $dayzccPath; ?>" target="_blank" class="btn waves-effect waves-light blue-grey lighten-1"><i class="material-icons left">launch</i>Control Center</a>
+                              <?php } ?>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -138,7 +142,7 @@
                   <?php if(strpos($server['game_descr'], 'Exile') !== false){ ?>
                     <div class="parallax"><img src="<?php echo $mainPath; ?>/img/dayzmod.png" width="1920" height="1080"></div>
                   <?php } else { ?>
-                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/exilemod.png" width="1920" height="1080"></div>
+                    <div class="parallax"><img src="<?php echo $mainPath; ?>/img/arma2chernarus.png" width="1920" height="1080"></div>
                   <?php } ?>
           <?php }
               } ?>
