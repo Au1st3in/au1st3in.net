@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
+    error_reporting(0);
     require("config.php");
     include("php/SteamAuth.php");
     include("php/GameQuery.php");

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
+    error_reporting(0);
     require("config.php");
     require("php/SteamAuth.php");
     if($auth->IsUserLoggedIn()){
