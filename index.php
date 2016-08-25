@@ -89,7 +89,7 @@
                     <div class="row">
                       <div class="col s12 m6 hide-on-med-and-down">
                         <div><br><br><br></div>
-                        <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=703084279" target="_blank"><div class="card hoverable center-align">
+                        <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=703084279" target="_blank" rel="noopener"><div class="card hoverable center-align">
                           <div class="card-image">
                             <img src="img/exilemod-server.png">
                             <span class="card-title">Steam Workshop Content</span>
@@ -139,8 +139,8 @@
         <div class="container grey-text text-lighten-4">
           <p class="grey-text text-lighten-4">
             <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha, </a>
-            <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Some Rights Reserved</a>
-            <a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a>
+            <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Some Rights Reserved</a>
+            <a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank" rel="noopener">Built with Materialize</a>
           </p>
         </div>
       </div>

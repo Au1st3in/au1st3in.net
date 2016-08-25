@@ -132,7 +132,7 @@
                             </div>
                             <div class="row center">
                               <?php if($server['gq_online'] && (strpos($server['game_descr'], 'DayZ') !== false)){ ?>
-                                <a href="<?php echo $dayzccPath; ?>" target="_blank" class="btn waves-effect waves-light blue-grey lighten-1"><i class="material-icons left">launch</i>Control Center</a>
+                                <a href="<?php echo $dayzccPath; ?>" target="_blank" rel="noopener" class="btn waves-effect waves-light blue-grey lighten-1"><i class="material-icons left">launch</i>Control Center</a>
                               <?php } ?>
                             </div>
                           </div>
@@ -243,8 +243,8 @@
               <div class="container grey-text text-lighten-4">
                 <p class="grey-text text-lighten-4">
                   <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/">&copy; <?php echo date("Y") ?> Austin Rocha, </a>
-                  <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Some Rights Reserved</a>
-                  <a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank">Built with Materialize</a>
+                  <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Some Rights Reserved</a>
+                  <a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank" rel="noopener">Built with Materialize</a>
                 </p>
               </div>
             </div>
