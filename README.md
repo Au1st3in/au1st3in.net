@@ -1,7 +1,7 @@
 Gaming Community Website
 =============================
 
-![](https://raw.githubusercontent.com/Au1st3in/au1st3in.net/master/img/screenshot.png)
+![](https://raw.githubusercontent.com/Au1st3in/au1st3in.net/php/img/screenshot.png)
 ts.au1st3in.net
 
 ## Libraries
