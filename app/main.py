@@ -2,8 +2,7 @@
 from flask import Flask, g, json, redirect, render_template, request, send_from_directory, session
 
 ''' SQLAlchemy Import '''
-from flask_sqlalchemy import SQLAlchemy
-from flask.ext.sqlalchemy import get_debug_queries, SQLAlchemy
+from flask_sqlalchemy import get_debug_queries, SQLAlchemy
 
 ''' OpenID Imports '''
 from flask_openid import OpenID
@@ -34,22 +33,26 @@ docstring, callables, default = load_fabfile('fabfile.py')
 state.commands.update(callables)
 
 ''' Config.json Import '''
-with open('config.json') as cfg:
+with open('../data/config.json') as cfg:
     config = json.load(cfg)
 
 ''' Initialize Flask App, Database, and OpenID '''
 app = Flask(__name__)
 
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain('fullchain.pem', 'privkey.pem')
+#from OpenSSL import SSL
+#context = SSL.Context(SSL.TLSv1_2_METHOD)
+#context.use_privatekey_file('../cert/privkey.pem')
+#context.use_certificate_chain_file('../cert/fullchain.pem')
+#context.use_certificate_file('../cert/cert.pem')
 
 app.config.update(
-    SQLALCHEMY_DATABASE_URI = config['sqlite']['db'],
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/'+config['sqlite']['db'],
+    SQLALCHEMY_TRACK_MODIFICATIONS = False,
     SECRET_KEY = config['steam-api']['key'],
     DEBUG = config['flask']['debug'],
     HOST = config['flask']['host'],
-    PORT = config['flask']['port'],
-    SSL_CONTEXT = context
+    PORT = config['flask']['port']
+    #SSL_CONTEXT = context
 )
 
 ''' Database and Open ID Instantiation '''
@@ -63,6 +66,9 @@ if app.debug:
     ssl._create_default_https_context = ssl._create_unverified_context
     debug_toolbar = DebugToolbarExtension()
     debug_toolbar.init_app(app)
+#else:
+#    from flask_sslify import SSLify
+#    sslify = SSLify(app, subdomains=True)
 
 class User(db.Model):
     ''' User Database Model '''
@@ -113,7 +119,9 @@ def get_steamfriends(steam_id, communityvisibilitystate):
     if communityvisibilitystate == 3:
         options = {'key': app.secret_key, 'steamid': steam_id, 'relationship': 'friend'}
         url = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?%s' % urllib.parse.urlencode(options)
-        rv = json.load(urllib.request.urlopen(url))
+        response = urllib.request.urlopen(url)
+        str_response = response.read().decode('utf-8')
+        rv = json.loads(str_response)
         for friend in rv['friendslist']['friends']:
             steam_ids.append(friend['steamid'])
     return steam_ids
@@ -122,7 +130,9 @@ def get_steamdata(steam_id):
     ''' Retrieves steamdata[] from a given steam_id '''
     options = {'key': app.secret_key, 'steamids': steam_id}
     url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0001/?%s' % urllib.parse.urlencode(options)
-    rv = json.load(urllib.request.urlopen(url))
+    response = urllib.request.urlopen(url)
+    str_response = response.read().decode('utf-8')
+    rv = json.loads(str_response)
     return rv['response']['players']['player'][0] or {}
 
 def steam_64id_to_guid(steam_id):
@@ -135,7 +145,7 @@ def steam_64id_to_guid(steam_id):
 
 ''' Logging Setup '''
 FORMAT = '%(asctime)-15s %(levelname)s %(message)s'
-logging.basicConfig(filename=config['flask']['logfile'], level=config['flask']['level'], format=FORMAT)
+logging.basicConfig(filename='../data/'+config['flask']['logfile'], level=config['flask']['level'], format=FORMAT)
 
 def parseLog(logfile):
     ''' Extracts important Log information (no older than a week) into a list of dictionaries '''
@@ -266,7 +276,7 @@ def settings():
 
     if g.user and auth:
         try:
-            with open(config['flask']['logfile']) as file:
+            with open('../data/'+config['flask']['logfile']) as file:
                 logs = list(parseLog(file))
         except:
             logs = [{}]

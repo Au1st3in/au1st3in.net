@@ -2,7 +2,7 @@ from fabric.api import run, env, settings, sudo, task
 from gameq import gameq
 
 import json
-with open('config.json') as cfg:
+with open('../data/config.json') as cfg:
     config = json.load(cfg)
 
 STAGES = {'server': config['server'], 'nas': config['nas']}

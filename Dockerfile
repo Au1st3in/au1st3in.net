@@ -9,4 +9,5 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade certifi
 ADD . /app
 WORKDIR /app
+RUN python install_certifi.py
 RUN pip install -r requirements.txt

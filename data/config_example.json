@@ -23,7 +23,7 @@
         "font-awesome" : "4.7.0"
     },
     "sqlite": {
-        "db" : "sqlite:///flask-openid.db"
+        "db" : "flask-openid.db"
     },
     "steam-api": {
         "steamID64" : "76561198026915793",

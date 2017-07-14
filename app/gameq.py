@@ -1,7 +1,7 @@
 import json, socket
 from gameQuery.query import Query
 
-with open('config.json') as cfg:
+with open('../data/config.json') as cfg:
     config = json.load(cfg)
 
 def gameq(soc):
