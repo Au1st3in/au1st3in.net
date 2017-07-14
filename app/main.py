@@ -39,12 +39,6 @@ with open('../data/config.json') as cfg:
 ''' Initialize Flask App, Database, and OpenID '''
 app = Flask(__name__)
 
-#from OpenSSL import SSL
-#context = SSL.Context(SSL.TLSv1_2_METHOD)
-#context.use_privatekey_file('../cert/privkey.pem')
-#context.use_certificate_chain_file('../cert/fullchain.pem')
-#context.use_certificate_file('../cert/cert.pem')
-
 app.config.update(
     SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/'+config['sqlite']['db'],
     SQLALCHEMY_TRACK_MODIFICATIONS = False,
@@ -52,7 +46,6 @@ app.config.update(
     DEBUG = config['flask']['debug'],
     HOST = config['flask']['host'],
     PORT = config['flask']['port']
-    #SSL_CONTEXT = context
 )
 
 ''' Database and Open ID Instantiation '''
@@ -66,9 +59,9 @@ if app.debug:
     ssl._create_default_https_context = ssl._create_unverified_context
     debug_toolbar = DebugToolbarExtension()
     debug_toolbar.init_app(app)
-#else:
-#    from flask_sslify import SSLify
-#    sslify = SSLify(app, subdomains=True)
+else:
+    from flask_sslify import SSLify
+    sslify = SSLify(app, subdomains=True)
 
 class User(db.Model):
     ''' User Database Model '''
@@ -158,9 +151,9 @@ def parseLog(logfile):
             currentDict = {
                 'date': str(line[0]),
                 'time': str(line[1].split(",")[0]),
-                'steam_id': str(line[5].replace('(', '').replace(')', '')),
-                'action': str(line[6]),
-                'server': str(line[7].rstrip())
+                'steam_id': str(line[4]),
+                'action': str(line[5]),
+                'server': str(line[6].rstrip())
             }
     yield currentDict
 
@@ -182,7 +175,7 @@ def create_or_login(resp):
     g.user.guid, g.user.personaname, g.user.avatar = steam_64id_to_guid(int(g.user.steam_id)), steamdata['personaname'], steamdata['avatarfull']
     db.session.commit()
     session['user_id'] = g.user.id
-    logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') LOGGED-IN AU1ST3IN.NET')
+    logging.info('LOG '+str(g.user.steam_id)+' LOGGED-IN AU1ST3IN.NET')
     return redirect(oid.get_next_url())
 
 @app.before_request
@@ -195,7 +188,7 @@ def before_request():
 @app.route('/logout')
 def logout():
     ''' OpenID Steam Logout Handler '''
-    logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') SIGNED-OUT AU1ST3IN.NET')
+    logging.info('LOG '+str(g.user.steam_id)+' SIGNED-OUT AU1ST3IN.NET')
     session.pop('user_id', None)
     return redirect(oid.get_next_url())
 
@@ -241,24 +234,20 @@ def command(state):
     if g.user and auth:
         try:
             if state == 'restart' and request.args.get('server', type=str) == '' and not request.args.get('ts', None, type=str):
-                print('1')
                 execute('server')
-                logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') REBOOT WINDOWS-SERVER')
+                logging.info('LOG '+str(g.user.steam_id)+' REBOOT WINDOWS-SERVER')
                 execute('reboot')
             elif state == 'restart' and request.args.get('ts', type=str) == '' and not request.args.get('server', None, type=str):
-                print('2')
                 execute('nas')
-                logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') RESTART TS3-SERVER')
+                logging.info('LOG '+str(g.user.steam_id)+' RESTART TS3-SERVER')
                 execute('control', 'restart', 'ts3')
             elif state in {'start', 'restart'} and request.args.get('server', None, type=str):
-                print('3')
-                logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-'+request.args.get('mod', 'default', type=str).upper())
                 execute('server')
+                logging.info('LOG '+str(g.user.steam_id)+' '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-'+request.args.get('mod', 'default', type=str).upper())
                 execute('control', str(state), request.args.get('server', '', type=str), request.args.get('mod', 'default', type=str))
             elif request.args.get('server', None, type=str):
-                print('4')
                 execute('server')
-                logging.info('LOG '+str(g.user.personaname)+' ('+str(g.user.steam_id)+') '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-SERVER')
+                logging.info('LOG '+str(g.user.steam_id)+' '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-SERVER')
                 execute('control', str(state), request.args.get('server', '', type=str))
         except:
             pass
@@ -283,6 +272,8 @@ def settings():
 
         steam_ids = Whitelist.fetch()
         steam_ids.remove(config['steam-api']['steamID64'])
+        if not config['steam-api']['steamID64'] == g.user.steam_id:
+            steam_ids.remove(g.user.steam_id)
 
         whitelist = [dict() for i in range(len(steam_ids))]
         for i in range(len(whitelist)):

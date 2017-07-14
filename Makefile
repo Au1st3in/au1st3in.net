@@ -23,6 +23,7 @@ syno:
 
 	cd /usr/syno/etc/certificate/_archive/
 	ln -s /usr/syno/etc/certificate/_archive/DznT3d /volume1/docker/cert
+	sudo openssl dhparam -out dhparam.pem 2048
 
 	nano /usr/syno/etc/packages/Docker/au1st3in.net.config
 	sed -i -e 's/800/80/' -e 's/4430/443/' -e 's/temp/cert/' /usr/syno/etc/packages/Docker/au1st3in.net.config

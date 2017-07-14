@@ -1,8 +1,10 @@
 FROM tiangolo/uwsgi-nginx:python3.5
 
 COPY nginx.conf /etc/nginx/conf.d/
-# COPY ssl-au1st3in.net.conf /etc/nginx/conf.d/
-# COPY ssl-params.conf /etc/nginx/conf.d/
+
+COPY ssl-au1st3in.net.conf /etc/nginx/snippets/
+COPY ssl-params.conf /etc/nginx/snippets/
+
 COPY ./app /app
 
 RUN pip install --upgrade pip
