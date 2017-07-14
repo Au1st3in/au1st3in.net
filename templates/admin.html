@@ -1,0 +1,299 @@
+{%if whitelisted and user%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+  <title>au1st3in.net</title>
+  <meta name="author" content="Austin Rocha">
+  <link rel="shortcut icon" href="static/static/img/steam.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/{{version[2]}}/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/{{version[0]}}/css/materialize.min.css">
+  <link href="static/css/parallax.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" class="active brand-logo">au1st3in.net</a>
+      <ul class="right hide-on-small-only">
+        <li><a href=""><i class="material-icons">view_quilt</i></a></li>
+        <li><a href="/settings"><i class="material-icons">settings</i></a></li>
+        <li class="grey-text text-darken-4">
+          <div class="valign-wrapper">
+            &nbsp;&nbsp;&nbsp;<img src="{{user.avatar}}" class="circle valign" height="40px" width="40px">
+          </div>
+        </li>
+        <li class="grey-text text-darken-4">
+          &nbsp;&nbsp;{{user.personaname}}&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="waves-light btn red lighten-2" href='/logout'>Logout</a>
+        </li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div>
+    <div class="parallax-container hide-on-small-only">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <p></p>
+          <h3 class="header center white-text"></h3>
+          <div class="row center">
+            <img src="static/img/windows-logo.png" height="10%" width="10%">
+            <h4>Windows Server</h4> {%if servers['pc']%}
+            <h5 class="header center white-text">Status: <i class="light green-text text-lighten-2">Online</i></h5>
+            <p></p>
+            <a href="/admin/restart?server" class="btn social waves-effect waves-light blue-grey lighten-1"><i class="material-icons left">power_settings_new</i>Reboot Server&nbsp;</a>
+            {%else%}
+            <h5 class="header center white-text">Status: <i class="light red-text text-lighten-2">Offline</i></h5>
+            <p></p>
+            <a class="btn social waves-effect waves-light blue-grey lighten-1" disabled><i class="material-icons left">power_settings_new</i>Reboot Server&nbsp;</a>
+            {%endif%}
+            <p></p>
+            {%if 'ts3' in servers['online']%}
+            <a href="/admin/restart?ts" class="btn social waves-effect waves-light blue-grey lighten-2"><i class="material-icons left">replay</i>Restart TeamSpeak&nbsp;</a>
+            {%else%}
+            <a class="btn social waves-effect waves-light blue-grey lighten-2" disabled><i class="material-icons left">replay</i>Restart TeamSpeak&nbsp;</a>
+            {%endif%}
+            <p><br></p>
+          </div>
+        </div>
+      </div>
+      {%if servers['pc']%}
+      <div class="parallax"><img src="static/img/dayz.png"></div>
+      {%else%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(70%); filter: grayscale(70%);" src="static/img/dayz.png"></div>
+      {%endif%}
+    </div>
+    <div class="parallax-container valign-wrapper hide-on-small-only">
+      <div class="section no-pad-bot">
+        <div class="container">
+          {%if servers['arma2oa']%}
+          <script>
+            window.onload = function() {
+              Materialize.toast('Arma 2 Server is Online.', 5000);
+            };
+          </script>
+          {%endif%}
+          <div class="section">
+            <div class="row">
+              <div class="col s12 m6 hide-on-med-and-down">
+                <div class="row center center-align">
+                  <img src="static/img/arma2-logo.png" width="45%" height="45%">
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="center">
+                  {%if servers['arma2oa'] and 'DayZ' in servers['arma2oa']['hostname']%}
+                  <h4 class="header center">DayZ {{servers['arma2oa']['map']}}</h4>
+                  <h5 class="header center light">Players: {{servers['arma2oa']['players']}}/{{servers['arma2oa']['maxplayers']}}</h5>
+                  {%elif servers['arma2oa']%}
+                  <h4 class="header center">Arma 2 {{servers['arma2oa']['map']}}</h4>
+                  <h5 class="header center light">Players: {{servers['arma2oa']['players']}}/{{servers['arma2oa']['maxplayers']}}</h5>
+                  <p></p>
+                  {%else%}
+                  <h4 class="header center">Arma 2: OA Server</h4>
+                  <h5 class="header center light"><i>Currently Offline</i></h5>
+                  <p></p>
+                  {%endif%}
+                  <p></p>
+                </div>
+                <div class="row center center-align">
+                  {%if servers['arma2oa'] and servers['pc']%}
+                  <form method='POST'>
+                    <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/admin/restart?server=arma2oa" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Restart"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/admin/stop?server=arma2oa" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Stop"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/admin/kill?server=arma2oa" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Kill Process"><i class="material-icons">not_interested</i></a>
+                  </form>
+                  {%elif servers['pc']%}
+                  <form action="/admin" method='POST'>
+                    <a href="/admin/start?server=arma2oa" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Start"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  </form>
+                  {%else%}
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  {%endif%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%if servers['arma2oa'] and 'DayZ' in servers['arma2oa']['hostname']%}
+      <div class="parallax"><img src="static/img/dayzmod.png" width="1920" height="1080"></div>
+      {%elif servers['arma2oa']%}
+      <div class="parallax"><img src="static/img/arma2chernarus.png" width="1920" height="1080"></div>
+      {%elif servers['pc']%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(10%); filter: grayscale(10%);" src="static/img/arma2chernarus.png" width="1920" height="1080"></div>
+      {%else%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(70%); filter: grayscale(70%);" src="static/img/arma2chernarus.png" width="1920" height="1080"></div>
+      {%endif%}
+    </div>
+    <div class="parallax-container valign-wrapper hide-on-small-only">
+      <div class="section no-pad-bot">
+        <div class="container">
+          {%if servers['arma3']%}
+          <script>
+            window.onload = function() {
+              Materialize.toast('Arma 3 Server is Online.', 5000);
+            };
+          </script>
+          {%endif%}
+          <div class="section">
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="center">
+                  {%if servers['arma3'] and 'ExileZ' in servers['arma3']['hostname']%}
+                  <h4 class="header center">ExileZ {{servers['arma3']['map']}}</h4>
+                  <h5 class="header center light">Players: {{servers['arma3']['players']}}/{{servers['arma3']['maxplayers']}}</h5>
+                  {%elif servers['arma3']%}
+                  <h4 class="header center">Arma 3 {{servers['arma3']['map']}}</h4>
+                  <h5 class="header center light">Players: {{servers['arma3']['players']}}/{{servers['arma3']['maxplayers']}}</h5>
+                  <p></p>
+                  {%else%}
+                  <h4 class="header center">Arma 3 Server</h4>
+                  <h5 class="header center light"><i>Currently Offline</i></h5>
+                  <p></p>
+                  {%endif%}
+                  <p></p>
+                </div>
+                <div class="row center center-align">
+                  {%if servers['arma3'] and servers['pc']%}
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/restart?server=arma3" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Restart"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/stop?server=arma3" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Stop"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/kill?server=arma3" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Kill Process"><i class="material-icons">not_interested</i></a>
+                  {%elif servers['pc']%}
+                  <a href="/admin/start?server=arma3" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Start"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  {%else%}
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  {%endif%}
+                </div>
+              </div>
+              <div class="col s12 m6 hide-on-med-and-down">
+                <div class="row center center-align">
+                  <img src="static/img/arma3-logo.png" width="60%" height="60%">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%if servers['arma3'] and 'ExileZ' in servers['arma3']['hostname']%}
+      <div class="parallax"><img src="static/img/exilemod.png" width="1920" height="1080"></div>
+      {%elif servers['arma3']%}
+      <div class="parallax"><img src="static/img/arma3tanoa.png" width="1920" height="1080"></div>
+      {%elif servers['pc']%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(10%); filter: grayscale(10%);" src="static/img/arma3tanoa.png" width="1920" height="1080"></div>
+      {%else%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(70%); filter: grayscale(70%);" src="static/img/arma3tanoa.png" width="1920" height="1080"></div>
+      {%endif%}
+    </div>
+    <div class="parallax-container valign-wrapper hide-on-small-only">
+      <div class="section no-pad-bot">
+        <div class="container">
+          {%if servers['minecraft']%}
+          <script>
+            window.onload = function() {
+              Materialize.toast('Minecraft Server is Online.', 5000);
+            };
+          </script>
+          {%endif%}
+          <div class="section">
+            <div class="row">
+              <div class="col s12 m6 hide-on-med-and-down">
+                <div class="row center center-align">
+                  <img src="static/img/minecraft-logo.png" width="80%" height="80%">
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="center">
+                  {%if servers['minecraft']%}
+                  <h4 class="header center">{{servers['minecraft']['hostname'].strip("Au1st3in's ").strip('Server')}}</h4>
+                  <h5 class="header center light">Players: {{servers['minecraft']['players']}}/{{servers['minecraft']['maxplayers']}}</h5>
+                  <p></p>
+                  {%else%}
+                  <h4 class="header center">Minecraft Server</h4>
+                  <h5 class="header center light"><i>Currently Offline</i></h5>
+                  <p></p>
+                  {%endif%}
+                  <p></p>
+                </div>
+                <div class="row center center-align">
+                  {%if servers['minecraft'] and servers['pc']%}
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/restart?server=minecraft" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Restart"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/stop?server=minecraft" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Stop"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/admin/kill?server=minecraft" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Kill Process"><i class="material-icons">not_interested</i></a>
+                  {%elif servers['pc']%}
+                  <a href="/admin/start?server=minecraft" class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Start"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  {%else%}
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">play_arrow</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">replay</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">stop</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a class="btn waves-effect waves-light blue-grey lighten-1 disabled"><i class="material-icons">not_interested</i></a>
+                  {%endif%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%if servers['minecraft']%}
+      <div class="parallax"><img src="static/img/minecraft.png" width="1920" height="1080"></div>
+      {%elif servers['pc']%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(10%); filter: grayscale(10%);" src="static/img/minecraft.png" width="1920" height="1080"></div>
+      {%else%}
+      <div class="parallax"><img style="-webkit-filter: grayscale(70%); filter: grayscale(70%);" src="static/img/minecraft.png" width="1920" height="1080"></div>
+      {%endif%}
+    </div>
+  </div>
+  <footer class="page-footer blue-grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12 hide-on-small-only">
+          <h5 class="white-text"><a class="white-text" href="https://www.bistudio.com/english/community/game-content-usage-rules"><i class="fa fa-flag-o"></i> Content Usage Disclaimer</a></h5>
+          <p class="grey-text text-lighten-4"><i>This website is not affiliated or authorized by Bohemia Interactive a.s. Bohemia Interactive, ARMA, DAYZ, and all associated logos and designs are trademarks or registered trademarks of Bohemia Interactive a.s.</i></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text"><i class="fa fa-code-fork"></i> GitHub</h5>
+          <ul>
+            <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+            <li><a class="github-button" href="https://github.com/au1st3in" data-style="mega" data-count-href="/au1st3in/followers" data-count-api="/users/au1st3in#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @au1st3in on GitHub">&nbsp;Follow @au1st3in&nbsp;</a></li>
+            <li><a class="github-button" href="https://github.com/au1st3in/au1st3in.net" data-icon="octicon-star" data-style="mega" data-count-href="/au1st3in/au1st3in.net/stargazers" data-count-api="/repos/au1st3in/au1st3in.net#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star au1st3in/au1st3in.net on GitHub">&nbsp;Star Au1st3in.net&nbsp;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright blue-grey darken-1">
+      <div class="container grey-text text-lighten-4">
+        <p class="grey-text text-lighten-4">
+          <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/"><i class="fa fa-copyright"></i> {{year}} Austin Rocha </a>&nbsp;|&nbsp;
+          <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer"> <i class="fa fa-creative-commons"></i> Some Rights Reserved</a>
+          <a class="grey-text text-lighten-4 right" href="http://materializecss.com" target="_blank" rel="noopener noreferrer">Materialize</a><a class="grey-text text-lighten-4 right">&nbsp;and&nbsp;</a><a class="grey-text text-lighten-4 right" href="http://flask.pocoo.org" target="_blank" rel="noopener noreferrer">Flask</a><a class="grey-text text-lighten-4 right">Built with&nbsp;</a><a class="grey-text text-lighten-4 right"><i class="fa fa-code"></i>&nbsp;&nbsp;</a>
+        </p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-{{version[1]}}.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/{{version[0]}}/js/materialize.min.js"></script>
+    <script src="static/js/parallax.min.js"></script>
+  </footer>
+</body>
+</html>
+{%endif%}

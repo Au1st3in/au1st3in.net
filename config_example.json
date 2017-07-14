@@ -1,0 +1,60 @@
+{
+    "server": {
+        "hosts" : ["LOCALHOST:PORT"],
+        "user" : "USERNAME",
+        "password" : "PASSWORD"
+    },
+    "nas": {
+        "hosts" : ["LOCALHOST:PORT"],
+        "user" : "USERNAME",
+        "password" : "PASSWORD"
+    },
+    "flask": {
+        "logfile" : "control.log",
+        "level" : 0,
+        "debug" : false,
+        "host" : "127.0.0.1",
+        "port" : 80
+    },
+    "version": {
+        "python" : "3.6",
+        "jquery" : "3.2.1",
+        "materialize" : "0.99.0",
+        "font-awesome" : "4.7.0"
+    },
+    "sqlite": {
+        "db" : "sqlite:///flask-openid.db"
+    },
+    "steam-api": {
+        "steamID64" : "76561198026915793",
+        "key" : "STEAM-WEB-API-KEY"
+    },
+    "dns": {
+        "main" : "www.au1st3in.net",
+        "ts3" : "ts.au1st3in.net",
+        "dayzcc" : "dayzcc.au1st3in.net",
+        "minecraft" : "mc.au1st3in.net"
+    },
+    "ts3": {
+        "host" : "LOCALHOST",
+        "port" : 9987,
+        "query" : 10011,
+        "username" : "QUERY-USERNAME",
+        "password" : "PASSWORD"
+    },
+    "arma2oa": {
+        "port" : 2302,
+        "query" : 2303
+    },
+    "arma3": {
+        "port" : 2304,
+        "query" : 2305
+    },
+    "dayz": {
+        "port" : 2302,
+        "query" : 2303
+    },
+    "minecraft": {
+        "port" : 25565
+    }
+}
