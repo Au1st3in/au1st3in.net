@@ -13,3 +13,4 @@ ts.au1st3in.net
 ## Credits
 * Materialize - Alvin Wang (https://github.com/Dogfalo/materialize)
 * Font-Awsome - Fort Awesome (https://github.com/FortAwesome/Font-Awesome)
+* Docker Image w/ uWSGI & Nginx - Sebastián Ramírez (https://github.com/tiangolo/uwsgi-nginx-docker)
