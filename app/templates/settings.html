@@ -101,6 +101,7 @@
   <div class="parallax-container hide-on-small-only">
     <div class="parallax"><img src="static/img/arma3tanoa.png"></div>
   </div>
+  {%if log[0]%}
   <div class="container">
     <div class="section">
       <div class="row">
@@ -130,7 +131,7 @@
                   <i class="fa fa-refresh"></i> {%elif entry['action'] == 'STOP'%}
                   <i class="fa fa-stop"></i> {%elif entry['action'] == 'KILL'%}
                   <i class="fa fa-ban"></i> {%elif entry['action'] == 'REBOOT'%}
-                  <i class="fa fa-power-off"></i> {%else%}
+                  <i class="fa fa-power-off"></i> {%elif entry['action']%}
                   <i class="fa fa-question tooltipped" data-position="right" data-delay="50" data-tooltip="{{entry['action']}}"></i> {%endif%}
                 </td>
                 <td class="center">{{entry['server']}}</td>
@@ -153,6 +154,7 @@
   <div class="parallax-container hide-on-small-only">
     <div class="parallax"><img src="static/img/arma3tanoa.png"></div>
   </div>
+  {%endif%}
   <footer class="page-footer blue-grey">
     <div class="container">
       <div class="row">

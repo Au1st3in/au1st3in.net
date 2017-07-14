@@ -209,7 +209,6 @@ def tsstatus():
     try:
         with tsquery.TS3Connection(str(socket.gethostbyname(config['dns']['main'])), config['ts3']['query']) as ts3conn:
             ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
-            #ts3conn.use(sid=1)
             virtualserver = tsviewer(ChannelTreeNode.build_tree(ts3conn, 1))
     except:
         virtualserver = False
@@ -266,8 +265,11 @@ def settings():
         Whitelist.put(config['steam-api']['steamID64'])
 
     if g.user and auth:
-        with open(config['flask']['logfile']) as file:
-            logs = list(parseLog(file))
+        try:
+            with open(config['flask']['logfile']) as file:
+                logs = list(parseLog(file))
+        except:
+            logs = [{}]
 
         steam_ids = Whitelist.fetch()
         steam_ids.remove(config['steam-api']['steamID64'])
