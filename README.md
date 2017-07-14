@@ -16,7 +16,7 @@ ts.au1st3in.net
 * Docker Image w/ uWSGI & Nginx - Sebastián Ramírez (https://github.com/tiangolo/uwsgi-nginx-docker)
 
 <p align="center">
-  <a href="https://hub.docker.com/r/au1st3in/au1st3in.net/">
+  <a href="https://hub.docker.com/r/au1st3in/au1st3in.net/" target="_blank" rel="noopener noreferrer">
     <img src="https://raw.githubusercontent.com/Au1st3in/au1st3in.net/master/docker.png?raw=true" width="50%" height="50%" />
   </a>
 </p>
