@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>au1st3in.net</title>
+  <meta name="author" content="Austin Rocha"/>
+  <link rel="shortcut icon" href="static/img/steam.ico"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/{{version[2]}}/css/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/{{version[0]}}/css/materialize.min.css"/>
+  <link href="static/css/parallax.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    {%if whitelisted%}
+    <div class="nav-wrapper container">
+    {%else:%}
+    <div class="container">
+    {%endif%}
+        <a href="/" class="active brand-logo hide-on-small-only">au1st3in.net</a>
+
+        <div class="hide-on-med-and-up">
+          {%if user%}
+            <ul class="left">
+            {%if whitelisted%}
+              <li><a href="/admin"><i class="material-icons">view_quilt</i></a></li>
+              <li><a href="/settings"><i class="material-icons">settings</i></a></li>
+            {%else:%}
+              <li><a href="#"><i class="material-icons">view_quilt</i></a></li>
+              <li class="tooltipped" data-position="right" data-delay="50" data-tooltip="Access Denied: Whitelist Required"><a href="#"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
+            {%endif%}
+            </ul>
+          <ul class="right">
+            <li><a class="waves-light btn red lighten-2" href='/logout'>Logout</a></li>
+          </ul>
+          {%else%}
+          <a href="#" class="active brand-logo left">au1st3in.net</a>
+          <ul class="right">
+            <li><a href="/login" class="active waves-effect waves-light btn light-green darken-2">Steam Login</a></li>
+          </ul>
+          {%endif%}
+        </div>
+
+        <ul class="right hide-on-small-only">
+          {%if user%}
+            {%if whitelisted%}
+            <li><a href="/admin"><i class="material-icons">view_quilt</i></a></li>
+            <li><a href="/settings"><i class="material-icons">settings</i></a></li>
+            {%else:%}
+            <li class="tooltipped" data-position="left" data-delay="50" data-tooltip="Access Denied: Whitelist Required"><a href="#"><i class="material-icons grey-text text-darken-1">view_quilt</i></a></li>
+            <li><a href="#"><i class="material-icons">settings</i></a></li>
+            {%endif%}
+          <li class="grey-text text-darken-4">
+            <div class="valign-wrapper">
+              &nbsp;&nbsp;&nbsp;<img src="{{user.avatar}}" class="circle valign z-depth-1" height="40px" width="40px">
+            </div>
+          </li>
+          <li class="grey-text text-darken-4">
+            &nbsp;&nbsp;{{user.personaname}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="waves-light btn red lighten-2" href='/logout'>Logout</a>
+          </li>
+          {%else%}
+          <li><a href="/login" class="waves-effect waves-light btn social light-green darken-2"><i class="fa fa-steam"></i>Steam Login</a></li>
+          {%endif%}
+        </ul>
+
+      </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+  <footer class="page-footer blue-grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12 hide-on-small-only">
+          <h5 class="white-text"><a class="white-text" href="https://www.bistudio.com/english/community/game-content-usage-rules" target="_blank" rel="noopener noreferrer"><i class="fa fa-flag-o"></i></a> Content Usage Disclaimer</h5>
+          <p class="grey-text text-lighten-4"><i>This website is not affiliated or authorized by Bohemia Interactive a.s. Bohemia Interactive, ARMA, DAYZ, and all associated logos and designs are trademarks or registered trademarks of Bohemia Interactive a.s.</i></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text"><a class="white-text" href="https://github.com/Au1st3in/au1st3in.net/network" target="_blank" rel="noopener noreferrer"><i class="fa fa-code-fork"></i></a> GitHub</h5>
+          <ul>
+            <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+            <li><a class="github-button" href="https://github.com/au1st3in" target="_blank" rel="noopener noreferrer" data-style="mega" data-count-href="/au1st3in/followers" data-count-api="/users/au1st3in#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @au1st3in on GitHub">&nbsp;Follow @au1st3in&nbsp;</a></li>
+            <li><a class="github-button" href="https://github.com/au1st3in/au1st3in.net" target="_blank" rel="noopener noreferrer" data-icon="octicon-star" data-style="mega" data-count-href="/au1st3in/au1st3in.net/stargazers" data-count-api="/repos/au1st3in/au1st3in.net#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star au1st3in/au1st3in.net on GitHub">&nbsp;Star Au1st3in.net&nbsp;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright blue-grey darken-1">
+      <div class="container grey-text text-lighten-4">
+        <p class="grey-text text-lighten-4">
+          <a class="grey-text text-lighten-4" href="http://www.austinrocha.com/" target="_blank" rel="noopener noreferrer"><i class="fa fa-copyright"></i> {{year}} Austin Rocha </a>&nbsp;|&nbsp;
+          <a class="grey-text text-lighten-4" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer"> <i class="fa fa-creative-commons"></i> Some Rights Reserved</a>
+          <a class="grey-text text-lighten-4 right hide-on-small-only" href="http://materializecss.com" target="_blank" rel="noopener noreferrer">Materialize</a><a class="grey-text text-lighten-4 right hide-on-small-only">&nbsp;and&nbsp;</a><a class="grey-text text-lighten-4 right hide-on-small-only" href="http://flask.pocoo.org" target="_blank" rel="noopener noreferrer">Flask</a><a class="grey-text text-lighten-4 right hide-on-small-only">Built with&nbsp;</a><a class="grey-text text-lighten-4 right hide-on-small-only"><i class="fa fa-code"></i>&nbsp;&nbsp;</a>
+        </p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-{{version[1]}}.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/{{version[0]}}/js/materialize.min.js"></script>
+    {%if version[3]%}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/{{version[3]}}/clipboard.min.js"></script>
+    {%endif%}
+    <script src="static/js/parallax.min.js"></script>
+  </footer>
+</body>
+</html>

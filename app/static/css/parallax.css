@@ -90,9 +90,17 @@ footer.page-footer {
 
 .col.social {
   width: 100%;
-  text-align: left;
+  text-asdflign: left;
 }
 
 .col.social i.fa-fw {
   width: 3.2rem;
+}
+
+.stroke {
+    text-shadow:
+    -1px -1px 0 #757575,
+    1px -1px 0 #757575,
+    -1px 1px 0 #757575,
+    1px 1px 0 #757575;
 }

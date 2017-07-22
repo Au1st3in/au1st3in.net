@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
+  <meta http-equiv="refresh" content="60">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
   <title>Teamspeak Status</title>
-  <link rel="shortcut icon" href="static/img/ts/teamspeak.ico">
+  <meta name="author" content="Austin Rocha"/>
+  <script async defer>function check_frame(){top===self&&(location.href="/")}</script>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/{{version[0]}}/css/materialize.min.css">
   <link href="static/css/tsstatus.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
-<body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;"><br><br><br><br>
+<body style="overflow-x:hidden;" onLoad="check_frame()"st><br><br><br><br>
   <div style="height:238px; width:380px; border: 0px; overflow:auto;">
     {%if virtualserver%} {%for server in virtualserver:%}
     <div class="tsstatus">
@@ -31,13 +33,7 @@
         </div>
         {%endif%}
       </div>
-      {%if virtualserver[server][channel][4]:%} {%for client in virtualserver[server][channel][4]:%}
-      <div class="tsstatusItem">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="sprite sprite-16x16_player_off"></i>&nbsp;{{client}}
-        <div class="tsstatusFlags">
-        </div>
-      </div>
-      {% endfor %} {%endif%} {%if virtualserver[server][channel][3]:%}
+      {%if virtualserver[server][channel][3]:%}
       <div class="tsstatusItem">
         {%for subchannel in virtualserver[server][channel][3]:%} {%if virtualserver[server][channel][3][subchannel][4]:%} {%if virtualserver[server][channel][3][subchannel][0]:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <i class="sprite sprite-16x16_channel_red"></i>&nbsp;{{subchannel}} {%elif virtualserver[server][channel][3][subchannel][1]:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,13 +48,31 @@
         </div>
         {%endif%} {%for client in virtualserver[server][channel][3][subchannel][4]:%}
         <div class="tsstatusItem">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="sprite sprite-16x16_player_off"></i>&nbsp;{{client}}
+          {%if clients[client]['client_output_muted']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="sprite sprite-16x16_output_muted"></i>&nbsp;{{client}} {%elif clients[client]['client_input_muted']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="sprite sprite-16x16_input_muted"></i>&nbsp;{{client}} {%elif clients[client]['client_flag_talking']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="sprite sprite-16x16_player_on"></i>&nbsp;{{client}} {%else:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="sprite sprite-16x16_player_off"></i>&nbsp;{{client}} {%endif%}
           <div class="tsstatusFlags">
+            {%for group in servergroups[0]:%} {%if group in clients[client]['client_servergroups']:%}
+            <i class="sprite sprite-{{servergroups[1][group]}}"></i> {%endif%} {%endfor%}
           </div>
         </div>
         {% endfor %} {%endif%} {% endfor %}
       </div>
-      {%endif%} {%endif%} {% endfor %}
+      {%endif%} {%if virtualserver[server][channel][4]:%} {%for client in virtualserver[server][channel][4]:%}
+      <div class="tsstatusItem">
+        {%if clients[client]['client_output_muted']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="sprite sprite-16x16_output_muted"></i>&nbsp;{{client}} {%elif clients[client]['client_input_muted']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="sprite sprite-16x16_input_muted"></i>&nbsp;{{client}} {%elif clients[client]['client_flag_talking']:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="sprite sprite-16x16_player_on"></i>&nbsp;{{client}} {%else:%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="sprite sprite-16x16_player_off"></i>&nbsp;{{client}} {%endif%}
+        <div class="tsstatusFlags">
+          {%for group in servergroups[0]:%} {%if group in clients[client]['client_servergroups']:%}
+          <i class="sprite sprite-{{servergroups[1][group]}}"></i> {%endif%} {%endfor%}
+        </div>
+      </div>
+      {% endfor %} {%endif%} {%endif%} {% endfor %}
     </div>
     {% endfor %} {%else%}
     <div class="tsstatus">

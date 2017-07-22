@@ -1,9 +1,9 @@
-body {
+/*body {
   background-image: url(../img/ts/client.png);
   background-attachment:fixed;
   background-position: left top;
   background-repeat: no-repeat;
-}
+}*/
 
 .tsstatus, .tsstatuserror{
 	background-color: transparent;
@@ -110,101 +110,161 @@ body {
 .sprite-16x16_default {
     width: 16px;
     height: 16px;
-    background-position: -5px -31px;
+    background-position: -109px -5px;
 }
 
 .sprite-16x16_hardware_input_muted {
     width: 16px;
     height: 16px;
-    background-position: -31px -31px;
+    background-position: -5px -31px;
 }
 
 .sprite-16x16_hardware_output_muted {
     width: 16px;
     height: 16px;
-    background-position: -57px -31px;
+    background-position: -31px -31px;
 }
 
 .sprite-16x16_input_muted {
     width: 16px;
     height: 16px;
-    background-position: -83px -31px;
+    background-position: -57px -31px;
 }
 
 .sprite-16x16_moderated {
     width: 14px;
     height: 14px;
-    background-position: -5px -57px;
+    background-position: -83px -31px;
 }
 
 .sprite-16x16_output_muted {
     width: 16px;
     height: 16px;
-    background-position: -29px -57px;
+    background-position: -107px -31px;
 }
 
 .sprite-16x16_player_off {
     width: 16px;
     height: 16px;
-    background-position: -55px -57px;
+    background-position: -5px -57px;
 }
 
 .sprite-16x16_player_on {
     width: 16px;
     height: 16px;
-    background-position: -81px -57px;
+    background-position: -31px -57px;
 }
 
 .sprite-16x16_register {
     width: 16px;
     height: 16px;
-    background-position: -5px -83px;
+    background-position: -57px -57px;
 }
 
 .sprite-16x16_server_green {
     width: 16px;
     height: 16px;
-    background-position: -31px -83px;
+    background-position: -83px -57px;
+}
+
+.sprite-admin {
+    width: 16px;
+    height: 16px;
+    background-position: -109px -57px;
+}
+
+.sprite-afk {
+    width: 16px;
+    height: 16px;
+    background-position: -5px -83px;
 }
 
 .sprite-group_100 {
-    width: 15px;
+    width: 16px;
+    height: 16px;
+    background-position: -31px -83px;
+}
+
+.sprite-group_200 {
+    width: 16px;
     height: 16px;
     background-position: -57px -83px;
 }
 
-.sprite-group_1288974707 {
-    width: 15px;
-    height: 16px;
-    background-position: -82px -83px;
-}
-
-.sprite-group_1492784371 {
-    width: 15px;
-    height: 16px;
-    background-position: -109px -5px;
-}
-
-.sprite-group_1926529428 {
-    width: 15px;
-    height: 16px;
-    background-position: -109px -31px;
-}
-
-.sprite-group_200 {
-    width: 15px;
-    height: 16px;
-    background-position: -107px -57px;
-}
-
 .sprite-group_300 {
-    width: 15px;
+    width: 16px;
     height: 16px;
-    background-position: -107px -83px;
+    background-position: -83px -83px;
 }
 
 .sprite-group_500 {
     width: 16px;
     height: 16px;
+    background-position: -109px -83px;
+}
+
+.sprite-group_blue-S {
+    width: 15px;
+    height: 16px;
     background-position: -5px -109px;
+}
+
+.sprite-group_cyan-M {
+    width: 15px;
+    height: 16px;
+    background-position: -30px -109px;
+}
+
+.sprite-group_darkblue-A {
+    width: 15px;
+    height: 16px;
+    background-position: -55px -109px;
+}
+
+.sprite-group_darkred-H {
+    width: 15px;
+    height: 16px;
+    background-position: -80px -109px;
+}
+
+.sprite-group_green-G {
+    width: 15px;
+    height: 16px;
+    background-position: -105px -109px;
+}
+
+.sprite-group_grey-C {
+    width: 15px;
+    height: 16px;
+    background-position: -135px -5px;
+}
+
+.sprite-group_grey-O {
+    width: 15px;
+    height: 16px;
+    background-position: -133px -31px;
+}
+
+.sprite-group_red-H {
+    width: 15px;
+    height: 16px;
+    background-position: -135px -57px;
+}
+
+.sprite-group_red-S {
+    width: 15px;
+    height: 16px;
+    background-position: -135px -83px;
+}
+
+.sprite-group_yellow-S {
+    width: 15px;
+    height: 16px;
+    background-position: -130px -109px;
+}
+
+.sprite-home {
+    width: 16px;
+    height: 16px;
+    background-position: -5px -135px;
 }

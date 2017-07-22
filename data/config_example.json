@@ -1,11 +1,14 @@
 {
-    "server": {
+    "pc": {
         "hosts" : ["LOCALHOST:PORT"],
+        "os" : "windows",
         "user" : "USERNAME",
         "password" : "PASSWORD"
     },
     "nas": {
         "hosts" : ["LOCALHOST:PORT"],
+        "dns" : "nas.au1st3in.net",
+        "os" : "linux",
         "user" : "USERNAME",
         "password" : "PASSWORD"
     },
@@ -17,10 +20,11 @@
         "port" : 80
     },
     "version": {
-        "python" : "3.6",
+        "python" : "3.5",
         "jquery" : "3.2.1",
-        "materialize" : "0.99.0",
-        "font-awesome" : "4.7.0"
+        "materialize" : "0.100.0",
+        "font-awesome" : "4.7.0",
+        "clipboard.js" : "1.7.1"
     },
     "sqlite": {
         "db" : "flask-openid.db"
@@ -32,8 +36,7 @@
     "dns": {
         "main" : "www.au1st3in.net",
         "ts3" : "ts.au1st3in.net",
-        "dayzcc" : "dayzcc.au1st3in.net",
-        "minecraft" : "mc.au1st3in.net"
+        "dayzcc" : "dayzcc.au1st3in.net"
     },
     "ts3": {
         "host" : "LOCALHOST",
@@ -42,19 +45,42 @@
         "username" : "QUERY-USERNAME",
         "password" : "PASSWORD"
     },
-    "arma2oa": {
-        "port" : 2302,
-        "query" : 2303
-    },
-    "arma3": {
-        "port" : 2304,
-        "query" : 2305
-    },
-    "dayz": {
-        "port" : 2302,
-        "query" : 2303
-    },
-    "minecraft": {
-        "port" : 25565
+    "servers": {
+      "arma2oa": {
+          "port" : 2302,
+          "query" : 2303,
+          "protocol" : "valve",
+          "dns" : null,
+          "names" : {
+            "default" : "Arma 2: OA",
+            "dayz" : "Arma 2: DayZ Mod"
+          },
+          "mods" : [
+            "dayz"
+          ]
+      },
+      "arma3": {
+          "port" : 2304,
+          "query" : 2305,
+          "protocol" : "valve",
+          "dns" : null,
+          "names" : {
+            "default" : "Arma 3",
+            "exile" : "Exile Mod"
+          },
+          "mods" : [
+            "exile"
+          ]
+      },
+      "minecraft": {
+          "port" : 25565,
+          "query" : 25565,
+          "protocol" : "gamespy4",
+          "dns" : "mc.au1st3in.net",
+          "names" : {
+            "default" : "Minecraft"
+          },
+          "mods" : null
+      }
     }
 }

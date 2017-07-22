@@ -17,11 +17,10 @@ from random import shuffle
 from gameq import gameq
 
 ''' Py-TS3 Imports '''
-from tsstatus import tsviewer
+from tsstatus import tsviewer, clientdict, gen_privilegekey, rem_privilegekey, get_privilegekeys
 import ts3.query as tsquery
 import ts3.response
 from ts3.common import TS3Error
-from ts3.examples.viewer import ChannelTreeNode
 from socket import error as socket_error
 
 ''' Fabric3 Imports and Setup '''
@@ -193,7 +192,7 @@ def logout():
     return redirect(oid.get_next_url())
 
 @app.route('/')
-def home():
+def index():
     ''' Main Site Page '''
     query = gameq(False)
     if g.user:
@@ -212,10 +211,15 @@ def tsstatus():
     try:
         with tsquery.TS3Connection(str(socket.gethostbyname(config['dns']['main'])), config['ts3']['query']) as ts3conn:
             ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
-            virtualserver = tsviewer(ChannelTreeNode.build_tree(ts3conn, 1))
+            virtualserver = tsviewer(ts3conn)
+            clients = clientdict(ts3conn)
+            ts3conn.quit()
+            sgids, sgicons = [int(key) for key in config['ts3']['server-groups'].keys()], {}
+            for g in sgids:
+                sgicons[g] = config['ts3']['server-groups'][str(g)]['group-icon']
     except:
-        virtualserver = False
-    return render_template('tsstatus.html', virtualserver=virtualserver, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']))
+        virtualserver, clients, sgids, sgicons = False, {}, [], {}
+    return render_template('tsstatus.html', virtualserver=virtualserver, servergroups=(sgids, sgicons), clients=clients, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']))
 
 @app.route('/admin')
 def admin():
@@ -223,7 +227,7 @@ def admin():
     if g.user:
         auth = Whitelist.get(g.user.steam_id)
     if g.user and auth:
-        return render_template('admin.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']), servers=gameq(True), user=g.user, whitelisted=auth)
+        return render_template('admin.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']), servers=gameq(True), os=config['pc']['os'], panels=[key for key in config['servers'].keys()], names=[config['servers'][game]['names'] for game in config['servers'].keys()], mods=[config['servers'][game]['mods'] for game in config['servers'].keys()], user=g.user, whitelisted=auth)
     return redirect('/')
 
 @app.route('/admin/<state>')
@@ -234,19 +238,19 @@ def command(state):
     if g.user and auth:
         try:
             if state == 'restart' and request.args.get('server', type=str) == '' and not request.args.get('ts', None, type=str):
-                execute('server')
+                execute('pc')
                 logging.info('LOG '+str(g.user.steam_id)+' REBOOT WINDOWS-SERVER')
                 execute('reboot')
-            elif state == 'restart' and request.args.get('ts', type=str) == '' and not request.args.get('server', None, type=str):
+            elif (state == 'start' or state == 'restart') and (request.args.get('ts', type=str) == '' and not request.args.get('server', None, type=str)):
                 execute('nas')
                 logging.info('LOG '+str(g.user.steam_id)+' RESTART TS3-SERVER')
                 execute('control', 'restart', 'ts3')
             elif state in {'start', 'restart'} and request.args.get('server', None, type=str):
-                execute('server')
+                execute('pc')
                 logging.info('LOG '+str(g.user.steam_id)+' '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-'+request.args.get('mod', 'default', type=str).upper())
                 execute('control', str(state), request.args.get('server', '', type=str), request.args.get('mod', 'default', type=str))
             elif request.args.get('server', None, type=str):
-                execute('server')
+                execute('pc')
                 logging.info('LOG '+str(g.user.steam_id)+' '+str(state).upper()+' '+request.args.get('server', type=str).upper()+'-SERVER')
                 execute('control', str(state), request.args.get('server', '', type=str))
         except:
@@ -283,7 +287,21 @@ def settings():
             whitelist[i]['avatar']=steamdata['avatar']
         shuffle(whitelist)
 
-        return render_template('settings.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']), user=g.user, whitelisted=auth, whitelist=whitelist, log=logs, admin=config['steam-api']['steamID64'])
+        try:
+            with tsquery.TS3Connection(str(socket.gethostbyname(config['dns']['main'])), config['ts3']['query']) as ts3conn:
+                ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
+                ts3conn.use(sid=1)
+                groups = list(map(int, config['ts3']['server-groups'].keys()))
+                privilegekey = get_privilegekeys(ts3conn, min(groups), g.user.steam_id)
+                ts3conn.quit()
+                servergroups=dict.fromkeys(groups)
+                for group in [key for key in servergroups.keys()]:
+                    servergroups[group] = {}
+                    servergroups[group]['group-name'], servergroups[group]['group-icon'] = config['ts3']['server-groups'][str(group)]['group-name'], config['ts3']['server-groups'][str(group)]['group-icon']
+        except:
+            privilegekey, servergroups, groups = [], {}, list(map(int, config['ts3']['server-groups'].keys()))
+
+        return render_template('settings.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome'], config['version']['clipboard.js']), user=g.user, whitelisted=auth, whitelist=whitelist, privilegekeys=privilegekey, servergroups=servergroups, groups=groups, log=logs, admin=config['steam-api']['steamID64'])
     return redirect('/')
 
 @app.route('/whitelist')
@@ -296,12 +314,39 @@ def whitelist():
             if len(request.args) == 1:
                 if request.args.get('add', None, type=str) and len(request.args.get('add', '', type=str)) == 17 and request.args.get('add', '', type=str).isdigit():
                     Whitelist.put(request.args.get('add', type=str))
+                    logging.info('LOG '+str(g.user.steam_id)+' ADD WHITELIST '+request.args.get('add', type=str))
                 elif request.args.get('remove', None, type=str) and len(request.args.get('remove', '', type=str)) == 17 and request.args.get('remove', '', type=str).isdigit() and not request.args.get('remove', '', type=str) in {config['steam-api']['steamID64'], g.user.steam_id}:
                     Whitelist.remove(request.args.get('remove', type=str))
+                    logging.info('LOG '+str(g.user.steam_id)+' REMOVE WHITELIST '+request.args.get('remove', type=str))
         except:
             pass
         return redirect('/settings')
     return redirect('/')
+
+@app.route('/privilegekey')
+def privilegekey():
+    ''' '''
+    if g.user:
+        auth = Whitelist.get(g.user.steam_id)
+    if g.user and auth:
+        try:
+            if len(request.args) == 2:
+                with tsquery.TS3Connection(str(socket.gethostbyname(config['dns']['main'])), config['ts3']['query']) as ts3conn:
+                    ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
+                    ts3conn.use(sid=1)
+                    if request.args.get('sgid', '', type=str).isdigit() and request.args.get('generate', type=bool) == False:
+                        logging.info('LOG '+str(g.user.steam_id)+' GENERATE PRIVILEGE-KEY '+gen_privilegekey(ts3conn, request.args.get('sgid', type=int), g.user.steam_id))
+                    elif request.args.get('token', None, type=str) and request.args.get('remove', type=bool) == False:
+                        logging.info('LOG '+str(g.user.steam_id)+' REMOVE PRIVILEGE-KEY '+rem_privilegekey(ts3conn, request.args.get('token', type=str).replace(' ', '+')))
+                    ts3conn.quit()
+        except:
+            pass
+        return redirect('/settings')
+    return redirect('/')
+
+@app.route('/nas')
+def nas():
+    return redirect('https://'+config['nas']['dns'])
 
 @app.route('/CNAME')
 @app.route('/robots.txt')

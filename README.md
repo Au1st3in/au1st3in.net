@@ -5,7 +5,7 @@ Gaming Community Website
 ts.au1st3in.net
 
 ## Libraries
-* Python-TS3 - Andrew Williams (https://github.com/nikdoof/python-ts3/)
+* Py-TS3 - Benedikt Schmitt (https://github.com/benediktschmitt/py-ts3)
 * GameQuery - patryk4815 (https://github.com/patryk4815/GameQuery)
 * MCrcon - Barney Gale (https://github.com/barneygale/MCRcon)
 * BErcon - indepth666 (https://github.com/indepth666/py3rcon)
