@@ -18,6 +18,9 @@ syno:
 	ssh admin@192.168.1.1 -p 22
 	sudo su -
 
+	cd /volume1/@appstore/ts3server/teamspeak3-server_linux-x86
+	./ts3server_startscript.sh start serveradmin_password=
+
 	sed -i -e 's/80/81/' -e 's/443/444/' /usr/syno/share/nginx/server.mustache /usr/syno/share/nginx/DSM.mustache /usr/syno/share/nginx/WWWService.mustache
 	synoservicecfg --restart nginx
 

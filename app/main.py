@@ -19,7 +19,7 @@ from gameq import gameq
 ''' Py-TS3 Imports '''
 from tsstatus import tsviewer, clientdict, gen_privilegekey, rem_privilegekey, get_privilegekeys
 import ts3.query as tsquery
-import ts3.response
+import ts3.commands, ts3.response
 from ts3.common import TS3Error
 from socket import error as socket_error
 
@@ -210,13 +210,28 @@ def tsstatus():
     ''' TeamSpeak Status Page '''
     try:
         with tsquery.TS3Connection(str(socket.gethostbyname(config['dns']['main'])), config['ts3']['query']) as ts3conn:
-            ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
-            virtualserver = tsviewer(ts3conn)
-            clients = clientdict(ts3conn)
-            ts3conn.quit()
-            sgids, sgicons = [int(key) for key in config['ts3']['server-groups'].keys()], {}
-            for g in sgids:
-                sgicons[g] = config['ts3']['server-groups'][str(g)]['group-icon']
+            if ts3conn:
+                ts3conn.login(client_login_name=config['ts3']['username'], client_login_password=config['ts3']['password'])
+                ts3conn.use(sid=1)
+                if config['ts3']['uid']:
+                    try:
+                        for ban in ts3conn.banlist():
+                            if ban['uid'] == config['ts3']['uid']:
+                                ts3conn.bandel(banid=ban['banid'])
+                    except:
+                        pass
+                    try:
+                        sgid = min(map(int, config['ts3']['server-groups'].keys()))
+                        dbid = int(ts3conn.clientgetdbidfromuid(cluid=config['ts3']['uid'])[0]['cldbid'])
+                        ts3conn.servergroupaddclient(sgid=sgid, cldbid=dbid)
+                    except:
+                        pass
+                virtualserver = tsviewer(ts3conn)
+                clients = clientdict(ts3conn)
+                ts3conn.quit()
+                sgids, sgicons = [int(key) for key in config['ts3']['server-groups'].keys()], {}
+                for g in sgids:
+                    sgicons[g] = config['ts3']['server-groups'][str(g)]['group-icon']
     except:
         virtualserver, clients, sgids, sgicons = False, {}, [], {}
     return render_template('tsstatus.html', virtualserver=virtualserver, servergroups=(sgids, sgicons), clients=clients, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']))
@@ -227,7 +242,9 @@ def admin():
     if g.user:
         auth = Whitelist.get(g.user.steam_id)
     if g.user and auth:
-        return render_template('admin.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']), servers=gameq(True), os=config['pc']['os'], panels=[key for key in config['servers'].keys()], names=[config['servers'][game]['names'] for game in config['servers'].keys()], mods=[config['servers'][game]['mods'] for game in config['servers'].keys()], user=g.user, whitelisted=auth)
+        games=[key for key in config['servers'].keys()]
+        games.sort()
+        return render_template('admin.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome']), servers=gameq(True), os=config['pc']['os'], panels=games, names=[config['servers'][game]['names'] for game in games], mods=[config['servers'][game]['mods'] for game in games], user=g.user, whitelisted=auth)
     return redirect('/')
 
 @app.route('/admin/<state>')

@@ -42,6 +42,7 @@
         "host" : "LOCALHOST",
         "port" : 9987,
         "query" : 10011,
+        "uid" : "",
         "username" : "QUERY-USERNAME",
         "password" : "PASSWORD"
     },
