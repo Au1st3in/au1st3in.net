@@ -1,4 +1,5 @@
-from fabric.api import run, env, settings, sudo, task
+from fabric.api import run, env, settings, sudo
+from celery import task
 from gameq import gameq
 
 import json
@@ -24,12 +25,12 @@ def nas():
 def control(state, server, mod=None):
     if (str(state)+str(server)+str(mod)).isalnum():
         if state == 'restart' and server == 'ts3' and not mod:
-            sudo("cd /usr/syno/sbin && synoservicecfg --restart pkgctl-ts3server", shell=True, pty=False)
+            sudo("cd /usr/syno/sbin && synoservicecfg --restart pkgctl-ts3server > /dev/null 2>&1", shell=True, pty=False)
         else:
             if mod:
-                run("python control.py "+str(state)+" "+str(server)+" "+str(mod), shell=False, pty=False)
+                run("start python subproc.py control.py "+str(state)+" "+str(server)+" "+str(mod)+" & exit", shell=False, pty=False)
             else:
-                run("python control.py "+str(state)+" "+str(server), shell=False, pty=False)
+                run("start python subproc.py control.py "+str(state)+" "+str(server)+" & exit", shell=False, pty=False)
 
 @task
 def reboot(state=None):
@@ -37,7 +38,7 @@ def reboot(state=None):
     for server in query['online']:
         try:
             if not server in {'ts3', None}:
-                run("python control.py stop "+str(server), shell=False, pty=False)
+                run("start python subproc.py control.py stop "+str(server)+" & exit", shell=False, pty=False)
         except:
             pass
     run("shutdown -r -f", shell=False, pty=False)

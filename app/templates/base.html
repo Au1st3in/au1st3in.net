@@ -14,11 +14,11 @@
 </head>
 <body>
   <nav class="white" role="navigation">
-    {%if whitelisted%}
+  {%if user%}
     <div class="nav-wrapper container">
-    {%else:%}
+  {%else%}
     <div class="container">
-    {%endif%}
+  {%endif%}
         <a href="/" class="active brand-logo hide-on-small-only">au1st3in.net</a>
 
         <div class="hide-on-med-and-up">
@@ -27,9 +27,9 @@
             {%if whitelisted%}
               <li><a href="/admin"><i class="material-icons">view_quilt</i></a></li>
               <li><a href="/settings"><i class="material-icons">settings</i></a></li>
-            {%else:%}
-              <li><a href="#"><i class="material-icons">view_quilt</i></a></li>
-              <li class="tooltipped" data-position="right" data-delay="50" data-tooltip="Access Denied: Whitelist Required"><a href="#"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
+            {%else%}
+              <li><a href="#"><i class="material-icons grey-text text-darken-1">view_quilt</i></a></li>
+              <li><a href="#"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
             {%endif%}
             </ul>
           <ul class="right">
@@ -48,9 +48,9 @@
             {%if whitelisted%}
             <li><a href="/admin"><i class="material-icons">view_quilt</i></a></li>
             <li><a href="/settings"><i class="material-icons">settings</i></a></li>
-            {%else:%}
-            <li class="tooltipped" data-position="left" data-delay="50" data-tooltip="Access Denied: Whitelist Required"><a href="#"><i class="material-icons grey-text text-darken-1">view_quilt</i></a></li>
-            <li><a href="#"><i class="material-icons">settings</i></a></li>
+            {%else%}
+            <li><a href="#"><i class="material-icons grey-text text-darken-1">view_quilt</i></a></li>
+            <li><a href="#"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
             {%endif%}
           <li class="grey-text text-darken-4">
             <div class="valign-wrapper">
@@ -84,7 +84,7 @@
           <ul>
             <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
             <li><a class="github-button" href="https://github.com/au1st3in" target="_blank" rel="noopener noreferrer" data-style="mega" data-count-href="/au1st3in/followers" data-count-api="/users/au1st3in#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @au1st3in on GitHub">&nbsp;Follow @au1st3in&nbsp;</a></li>
-            <li><a class="github-button" href="https://github.com/au1st3in/au1st3in.net" target="_blank" rel="noopener noreferrer" data-icon="octicon-star" data-style="mega" data-count-href="/au1st3in/au1st3in.net/stargazers" data-count-api="/repos/au1st3in/au1st3in.net#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star au1st3in/au1st3in.net on GitHub">&nbsp;Star Au1st3in.net&nbsp;</a></li>
+            <li><a class="github-button" href="https://github.com/au1st3in/au1st3in.net" target="_blank" rel="noopener noreferrer" data-icon="octicon-star" data-style="mega" data-count-href="/au1st3in/au1st3in.net/stargazers" data-count-api="/repos/au1st3in/au1st3in.net#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star au1st3in/au1st3in.net on GitHub">&nbsp;Star au1st3in.net&nbsp;</a></li>
           </ul>
         </div>
       </div>
@@ -104,6 +104,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/{{version[3]}}/clipboard.min.js"></script>
     {%endif%}
     <script src="static/js/parallax.min.js"></script>
+    {%if not whitelisted%}
+    <script>
+      var $toastContent = $('<span>Currently not whitelisted.</span>');
+      Materialize.toast($toastContent, 5000);
+    </script>
+    {%endif%}
   </footer>
 </body>
 </html>

@@ -242,5 +242,6 @@ def get_privilegekeys(ts3conn, sgid=None, steam_id=None):
             if not bool(int(token['token_type'])) and not bool(int(token['token_id2'])):
                 privilegekeys.append((int(token['token_id1']), token['token']))
     except:
-        privilegekeys.append((int(sgid), gen_privilegekey(ts3conn, sgid, steam_id+' - Default')))
+        if sgid and steam_id:
+            privilegekeys.append((int(sgid), gen_privilegekey(ts3conn, sgid, steam_id+' - Default')))
     return privilegekeys

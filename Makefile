@@ -6,6 +6,7 @@ all: build
 
 build:
 	docker rmi --force $(docker images -a -q)
+	sudo cleanup.sh
 	sudo docker build -t $(REPO) .
 	docker login
 	docker tag $(REPO) au1st3in/$(REPO)

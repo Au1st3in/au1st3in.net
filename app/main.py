@@ -17,7 +17,7 @@ from random import shuffle
 from gameq import gameq
 
 ''' Py-TS3 Imports '''
-from tsstatus import tsviewer, clientdict, gen_privilegekey, rem_privilegekey, get_privilegekeys
+from tsstatus import clientdict, gen_privilegekey, get_privilegekeys, rem_privilegekey, tsviewer
 import ts3.query as tsquery
 import ts3.commands, ts3.response
 from ts3.common import TS3Error
@@ -35,7 +35,7 @@ state.commands.update(callables)
 with open('../data/config.json') as cfg:
     config = json.load(cfg)
 
-''' Initialize Flask App, Database, and OpenID '''
+''' Initialize Flask App '''
 app = Flask(__name__)
 
 app.config.update(
@@ -317,7 +317,6 @@ def settings():
                     servergroups[group]['group-name'], servergroups[group]['group-icon'] = config['ts3']['server-groups'][str(group)]['group-name'], config['ts3']['server-groups'][str(group)]['group-icon']
         except:
             privilegekey, servergroups, groups = [], {}, list(map(int, config['ts3']['server-groups'].keys()))
-
         return render_template('settings.html', year=date.today().year, version=(config['version']['materialize'], config['version']['jquery'], config['version']['font-awesome'], config['version']['clipboard.js']), user=g.user, whitelisted=auth, whitelist=whitelist, privilegekeys=privilegekey, servergroups=servergroups, groups=groups, log=logs, admin=config['steam-api']['steamID64'])
     return redirect('/')
 

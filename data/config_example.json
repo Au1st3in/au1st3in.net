@@ -22,7 +22,7 @@
     "version": {
         "python" : "3.5",
         "jquery" : "3.2.1",
-        "materialize" : "0.100.0",
+        "materialize" : "0.100.1",
         "font-awesome" : "4.7.0",
         "clipboard.js" : "1.7.1"
     },

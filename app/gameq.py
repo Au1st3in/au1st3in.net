@@ -19,11 +19,13 @@ def gameq(soc):
             query[server] = info.query(str(ip), config['servers'][server]['query'], config['servers'][server]['protocol'])
             if query[server]:
                 query[server]['ip'], query[server]['port'], query[server]['protocol'] = str(ip), config['servers'][server]['port'], config['servers'][server]['protocol']
-                if config['servers'][server]['dns']:
+                if 'dns' in config['servers'][server]:
                     query[server]['dns'] = config['servers'][server]['dns']
-                if config['servers'][server]['mods']:
+                if 'mods' in config['servers'][server]:
                     query[server]['mods'] = config['servers'][server]['mods']
                 query['online'].append(server)
+            else:
+                query[server] = None
         except:
             query[server] = None
 
