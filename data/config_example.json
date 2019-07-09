@@ -7,7 +7,7 @@
     },
     "nas": {
         "hosts" : ["LOCALHOST:PORT"],
-        "dns" : "nas.au1st3in.net",
+        "dns" : "nas.abdoudz20.net",
         "os" : "linux",
         "user" : "USERNAME",
         "password" : "PASSWORD"
@@ -34,8 +34,8 @@
         "key" : "STEAM-WEB-API-KEY"
     },
     "dns": {
-        "main" : "www.au1st3in.net",
-        "ts3" : "ts.au1st3in.net",
+        "main" : "www.abdoudz20.net",
+        "ts3" : "ts.abdoudz20.net",
         "dayzcc" : "dayzcc.au1st3in.net"
     },
     "ts3": {
@@ -77,7 +77,7 @@
           "port" : 25565,
           "query" : 25565,
           "protocol" : "gamespy4",
-          "dns" : "mc.au1st3in.net",
+          "dns" : "mc.abdoudz20.net",
           "names" : {
             "default" : "Minecraft"
           },
